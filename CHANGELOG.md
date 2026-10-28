@@ -6,6 +6,7 @@ The form is Keep a Changelog; versions follow SemVer.
 
 ### Changed
 - package.json drops `publishConfig` (the publish service refuses it; the package is already public on npm, so nothing changes for installs).
+- The checklist warns on a `publishConfig` in package.json (19 rules).
 
 ## 0.1.1 - 2026-10-28 - the gate type-checks
 
