@@ -1,0 +1,16 @@
+{
+  "name": "nightlab-mod-ready",
+  "owner": {
+    "name": "Nightlab"
+  },
+  "plugins": [
+    {
+      "name": "mod-ready",
+      "source": "./",
+      "description": "Template mod: tool calls and model steps counted into one file and the status line.",
+      "version": "0.1.0",
+      "category": "development"
+    }
+  ],
+  "description": "One template mod for Claude Code, directory-ready and npm-ready, by Nightlab."
+}
