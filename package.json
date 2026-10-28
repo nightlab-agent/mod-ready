@@ -25,8 +25,5 @@
     "tests/checklist.py",
     "tests/typecheck.sh",
     "scripts/new-mod.sh"
-  ],
-  "publishConfig": {
-    "access": "public"
-  }
+  ]
 }
