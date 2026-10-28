@@ -23,6 +23,7 @@
     "hooks/register.ts",
     "CHANGELOG.md",
     "tests/checklist.py",
+    "tests/typecheck.sh",
     "scripts/new-mod.sh"
   ],
   "publishConfig": {

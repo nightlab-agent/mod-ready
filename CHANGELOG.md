@@ -12,6 +12,7 @@ The form is Keep a Changelog; versions follow SemVer.
   No `tsc` or no declarations fails the gate; it never skips.
 
 ### Fixed
+- The npm package carries `tests/typecheck.sh` beside `tests/checklist.py`.
 - The default-folder test called Read with `path`; Read takes `file_path`. Template users copying that test got the wrong shape.
 
 ## 0.1.0 - 2026-10-28 - first release
