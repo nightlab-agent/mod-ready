@@ -7,7 +7,7 @@ The form is Keep a Changelog; versions follow SemVer.
 ### Changed
 - package.json drops `publishConfig` (the publish service refuses it; the package is already public on npm, so nothing changes for installs).
 - The checklist fails (was: warns) on a `publishConfig` in package.json, and fails on a package.json repository that is not the plugin's own GitHub repo.
-- `tests/typecheck.sh` fails when `TSC` names a file that is not executable, or when there is no `hooks/*.ts(x)` to check (both passed silently before).
+- `tests/typecheck.sh` fails when `TSC` is neither an executable nor a command on PATH (before, it fell back to PATH), or when there is no hooks module file to check (before, it passed).
 
 ## 0.1.1 - 2026-10-28 - the gate type-checks
 
