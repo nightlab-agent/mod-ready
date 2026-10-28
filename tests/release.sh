@@ -2,10 +2,12 @@
 # Release gate: the manifest validates, the tests pass, the directory checklist
 # has no FAIL, every version string agrees, and npm would pack only the listed
 # files. Exit non-zero at the first failure. Run from anywhere: sh tests/release.sh
+# Type-check: tests/typecheck.sh, tsc --noEmit against the engine's declarations.
 set -e
 cd "$(dirname "$0")/.."
 claude plugin validate .
 claude plugin test .
+sh tests/typecheck.sh
 python3 -I tests/checklist.py
 python3 -I - <<'PY'
 import json, re, sys

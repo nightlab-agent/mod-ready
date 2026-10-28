@@ -1,4 +1,5 @@
 import { expect, test } from 'claude-code/testing'
+import type { TestBody } from 'claude-code/testing'
 
 // Each test stands for the engine beneath the mod: it answers `$.fs.write`
 // and `$.ui.status`, raises tool calls and turn steps, and reads what the mod
@@ -7,7 +8,7 @@ import { expect, test } from 'claude-code/testing'
 
 type Written = { path: string; text: string }
 
-const world = (on: Parameters<Parameters<typeof test>[1]>[1]) => {
+const world = (on: Parameters<TestBody>[1]) => {
   const writes: Written[] = []
   const statuses: (string | undefined)[] = []
   on('fs.write', (_, e) => {
@@ -20,12 +21,12 @@ const world = (on: Parameters<Parameters<typeof test>[1]>[1]) => {
   })
   on('tool.call', () => ({ result: {} }))
   on('turn.step', async function* (_, e) {
-    return { turnId: e.turnId, index: e.index, answer: '', toolUses: [] }
+    return { turnId: e.turnId, index: e.index, answer: '', toolUses: [], stopReason: 'end_turn', usage: null }
   })
   return { writes, statuses }
 }
 
-const step = async ($: Parameters<Parameters<typeof test>[1]>[0], index: number, agentId?: string) => {
+const step = async ($: Parameters<TestBody>[0], index: number, agentId?: string) => {
   const s = $.turn.step({ turnId: 't1', index, model: 'claude-opus-5-5', messageCount: 3, ...(agentId ? { agentId } : {}) })
   for (;;) {
     const n = await s.next()
@@ -54,7 +55,7 @@ test('a model step is the second door: it counts and writes too', { options: { d
 
 test('with no option set, the file goes to the fixed default folder', async ($, on) => {
   const { writes } = world(on)
-  await $.tool.call({ tool: 'Read', path: 'a.txt' })
+  await $.tool.call({ tool: 'Read', file_path: 'a.txt' })
   // the engine resolves a relative folder against the project the session runs in
   expect(writes[0]!.path.endsWith('/.mod-ready/count.txt')).toBe(true)
 })

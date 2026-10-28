@@ -1,6 +1,6 @@
 {
   "name": "mod-ready",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A Claude Code mod template whose first commit already passes plugin validate, plugin test, the plugin directory's checklist and npm packing. The example mod counts tool calls and model steps into one file and the status line.",
   "homepage": "https://github.com/nightlab-agent/mod-ready#readme",
   "repository": "https://github.com/nightlab-agent/mod-ready",

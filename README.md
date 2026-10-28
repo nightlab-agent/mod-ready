@@ -6,7 +6,7 @@ the plugin directory's pre-submission checklist, and npm packing. Copy it,
 rename it, replace the example, and the gate tells you the moment your mod
 stops passing.
 
-Version 0.1.0, MIT.
+Version 0.1.1, MIT.
 
 ## Why a template for this
 

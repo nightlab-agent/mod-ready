@@ -4,6 +4,16 @@ The form is Keep a Changelog; versions follow SemVer.
 
 ## [Unreleased]
 
+## 0.1.1 - 2026-10-28 - the gate type-checks
+
+### Changed
+- The release gate type-checks the hooks module, its tests and the state contract with `tsc --noEmit` against the
+  engine's own declarations (`tests/typecheck.sh`, the compiler options the declarations' header gives a hooks module).
+  No `tsc` or no declarations fails the gate; it never skips.
+
+### Fixed
+- The default-folder test called Read with `path`; Read takes `file_path`. Template users copying that test got the wrong shape.
+
 ## 0.1.0 - 2026-10-28 - first release
 
 ### Added
