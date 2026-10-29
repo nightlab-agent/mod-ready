@@ -83,8 +83,9 @@ marketplace setup, and a GitHub Actions workflow that validates every plugin on
 each push and pull request. mod-ready has none of those. Pick mod-ready for a
 TypeScript hooks module: it ships a working one with ten tests (including
 out-of-order, two-at-once and look-alike collision tests), a `tsc` type check
-against the engine's own declarations, and the checklist above; that
-template's README mentions none of the four.
+against the engine's own declarations, and the checklist above. We did not
+find any of these four described in that template's README when we read it
+on 2026-10-29.
 
 ## The release check
 
