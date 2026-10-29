@@ -1,1 +1,1 @@
-{"test": "sh tests/release.sh"}
+{"test": "TSC=/nightlab/tools/node_modules/.bin/tsc CC_TYPES=/nightlab/tools/cc-types/2.1.310/claude-code.d.ts sh tests/release.sh"}
