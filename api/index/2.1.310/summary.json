@@ -1,0 +1,3061 @@
+{
+ "version": "2.1.310",
+ "firstLine": "// Written by Claude Code 2.1.310.",
+ "counts": {
+  "lines": 22566,
+  "exports": 482,
+  "events": 111,
+  "nouns": 21,
+  "members": 85,
+  "components": 12,
+  "tools": 0
+ },
+ "events": {
+  "turn.step": {
+   "ChunkOf": "TurnStepChunk",
+   "EngineEventOf": "TurnStepInput",
+   "EngineResultOf": "TurnStepResult"
+  },
+  "process.spawn": {
+   "ChunkOf": "ProcessSpawnChunk",
+   "OpEventOf": "ProcessSpawnRequest",
+   "OpValueOf": "ProcessSpawnResult"
+  },
+  "tool.call": {
+   "EngineEventOf": "ToolCallInput",
+   "EngineResultOf": "ToolCallResult"
+  },
+  "tool.check": {
+   "EngineEventOf": "ToolCheckInput",
+   "EngineResultOf": "ToolCheckResult"
+  },
+  "ui.render": {
+   "EngineEventOf": "RenderInput",
+   "EngineResultOf": "RenderElement"
+  },
+  "ui.resolve": {
+   "EngineEventOf": "ResolveInput",
+   "EngineResultOf": "ElementTable"
+  },
+  "ui.press": {
+   "EngineEventOf": "UiPressArgument",
+   "EngineResultOf": "UiPressResult"
+  },
+  "ui.input": {
+   "EngineEventOf": "UiInputArgument",
+   "EngineResultOf": "UiInputResult"
+  },
+  "ui.select": {
+   "EngineEventOf": "UiSelectArgument",
+   "EngineResultOf": "UiSelectResult"
+  },
+  "ui.message": {
+   "EngineEventOf": "UiMessageArgument",
+   "EngineResultOf": "UiMessageResult"
+  },
+  "ui.fault": {
+   "EngineEventOf": "UiFaultInput",
+   "EngineResultOf": "UiFaultResult"
+  },
+  "ui.scroll": {
+   "EngineEventOf": "UiScrollInput",
+   "EngineResultOf": "UiScrollResult"
+  },
+  "ui.focus": {
+   "EngineEventOf": "UiFocusInput",
+   "EngineResultOf": "UiFocusResult"
+  },
+  "agent.offer": {
+   "EngineEventOf": "AgentOfferInput",
+   "EngineResultOf": "AgentOfferResult"
+  },
+  "agent.spawn": {
+   "EngineEventOf": "AgentSpawnInput",
+   "EngineResultOf": "AgentSpawnResult"
+  },
+  "prompt.submit": {
+   "EngineEventOf": "PromptSubmitInput",
+   "EngineResultOf": "PromptSubmitResult"
+  },
+  "prompt.fill": {
+   "EngineEventOf": "PromptFillInput",
+   "EngineResultOf": "PromptFillResult"
+  },
+  "prompt.suggest": {
+   "EngineEventOf": "PromptSuggestInput",
+   "EngineResultOf": "PromptSuggestResult"
+  },
+  "prompt.edit": {
+   "EngineEventOf": "PromptEditInput",
+   "EngineResultOf": "PromptEditResult"
+  },
+  "prompt.change": {
+   "EngineEventOf": "PromptChangeInput",
+   "EngineResultOf": "PromptChangeResult"
+  },
+  "prompt.autocomplete": {
+   "EngineEventOf": "PromptAutocompleteInput",
+   "EngineResultOf": "PromptAutocompleteResult"
+  },
+  "prompt.section": {
+   "EngineEventOf": "PromptSectionInput",
+   "EngineResultOf": "PromptSectionResult"
+  },
+  "prompt.context": {
+   "EngineEventOf": "PromptContextInput",
+   "EngineResultOf": "PromptContextResult"
+  },
+  "prompt.compose": {
+   "EngineEventOf": "PromptComposeInput",
+   "EngineResultOf": "PromptComposeResult"
+  },
+  "prompt.attachment": {
+   "EngineEventOf": "PromptAttachmentInput",
+   "EngineResultOf": "PromptAttachmentResult"
+  },
+  "prompt.mention": {
+   "EngineEventOf": "PromptMentionInput",
+   "EngineResultOf": "PromptMentionResult"
+  },
+  "tool.describe": {
+   "EngineEventOf": "ToolDescribeInput",
+   "EngineResultOf": "ToolDescribeResult"
+  },
+  "command.run": {
+   "EngineEventOf": "CommandRunInput",
+   "EngineResultOf": "CommandRunResult"
+  },
+  "command.describe": {
+   "EngineEventOf": "CommandDescribeInput",
+   "EngineResultOf": "CommandDescribeResult"
+  },
+  "config.set": {
+   "EngineEventOf": "ConfigSetInput",
+   "EngineResultOf": "ConfigSetResult"
+  },
+  "config.describe": {
+   "EngineEventOf": "ConfigDescribeInput",
+   "EngineResultOf": "ConfigDescribeResult"
+  },
+  "telemetry.log": {
+   "EngineEventOf": "TelemetryLogInput",
+   "EngineResultOf": "TelemetryLogResult"
+  },
+  "telemetry.mark": {
+   "EngineEventOf": "TelemetryMarkInput",
+   "EngineResultOf": "TelemetryMarkResult"
+  },
+  "skill.prompt": {
+   "EngineEventOf": "SkillPromptInput",
+   "EngineResultOf": "SkillPromptResult"
+  },
+  "attribution.text": {
+   "EngineEventOf": "AttributionTextInput",
+   "EngineResultOf": "AttributionTextResult"
+  },
+  "session.start": {
+   "EngineEventOf": "SessionStartInput",
+   "EngineResultOf": "SessionStartResult"
+  },
+  "session.receive": {
+   "EngineEventOf": "SessionReceiveInput",
+   "EngineResultOf": "SessionReceiveResult"
+  },
+  "session.append": {
+   "EngineEventOf": "SessionAppendInput",
+   "EngineResultOf": "SessionAppendResult"
+  },
+  "session.send": {
+   "EngineEventOf": "SessionSendInput",
+   "EngineResultOf": "SessionSendResult"
+  },
+  "session.compact": {
+   "EngineEventOf": "SessionCompactInput",
+   "EngineResultOf": "SessionCompactResult"
+  },
+  "session.attach": {
+   "EngineEventOf": "SessionAttachInput",
+   "EngineResultOf": "SessionAttachResult"
+  },
+  "session.detach": {
+   "EngineEventOf": "SessionDetachInput",
+   "EngineResultOf": "SessionDetachResult"
+  },
+  "session.measure": {
+   "EngineEventOf": "SessionMeasureInput",
+   "EngineResultOf": "SessionMeasureResult"
+  },
+  "session.end": {
+   "EngineEventOf": "SessionEndInput",
+   "EngineResultOf": "SessionEndResult"
+  },
+  "plugin.register": {
+   "EngineEventOf": "PluginRegisterInput",
+   "EngineResultOf": "PluginRegisterResult"
+  },
+  "turn.start": {
+   "EngineEventOf": "TurnStartInput",
+   "EngineResultOf": "TurnStartResult"
+  },
+  "turn.complete": {
+   "EngineEventOf": "TurnCompleteInput",
+   "EngineResultOf": "TurnCompleteResult"
+  },
+  "engine.create": {
+   "EngineEventOf": "EngineCreateInput",
+   "EngineResultOf": "EngineCreateResult"
+  },
+  "model.complete": {
+   "OpEventOf": "ModelCompleteInput",
+   "OpValueOf": "ModelCompleteResult"
+  },
+  "model.fork": {
+   "OpEventOf": "ModelForkRequest",
+   "OpValueOf": "ModelForkResult"
+  },
+  "audio.speak": {
+   "OpEventOf": "SpeakRequest",
+   "OpValueOf": "SpeakResult"
+  },
+  "session.cwd": {
+   "OpEventOf": "NoArgs",
+   "OpValueOf": "string"
+  },
+  "session.root": {
+   "OpEventOf": "NoArgs",
+   "OpValueOf": "string"
+  },
+  "session.model": {
+   "OpEventOf": "NoArgs",
+   "OpValueOf": "string"
+  },
+  "session.turns": {
+   "OpEventOf": "NoArgs",
+   "OpValueOf": "number"
+  },
+  "session.id": {
+   "OpEventOf": "NoArgs",
+   "OpValueOf": "string"
+  },
+  "session.messages": {
+   "OpEventOf": "SessionMessagesArgs",
+   "OpValueOf": "SessionMessagesValue"
+  },
+  "session.repo": {
+   "OpEventOf": "NoArgs",
+   "OpValueOf": "SessionRepo | null"
+  },
+  "session.surface": {
+   "OpEventOf": "NoArgs",
+   "OpValueOf": "RenderSurface | null"
+  },
+  "session.surfaces": {
+   "OpEventOf": "NoArgs",
+   "OpValueOf": "readonly RenderSurface[]"
+  },
+  "session.authorize": {
+   "OpEventOf": "NoArgs",
+   "OpValueOf": "SessionAuthorization"
+  },
+  "session.identity": {
+   "OpEventOf": "NoArgs",
+   "OpValueOf": "SessionIdentity"
+  },
+  "session.usage": {
+   "OpEventOf": "SessionUsageArgs",
+   "OpValueOf": "SessionUsage"
+  },
+  "session.version": {
+   "OpEventOf": "NoArgs",
+   "OpValueOf": "SessionVersion"
+  },
+  "prompt.read": {
+   "OpEventOf": "NoArgs",
+   "OpValueOf": "PromptBox"
+  },
+  "tool.list": {
+   "OpEventOf": "NoArgs",
+   "OpValueOf": "ToolInfo[]"
+  },
+  "tool.register": {
+   "OpEventOf": "RegisteredToolSpec"
+  },
+  "command.list": {
+   "OpEventOf": "NoArgs",
+   "OpValueOf": "CommandInfo[]"
+  },
+  "command.register": {
+   "OpEventOf": "CommandSpec"
+  },
+  "config.list": {
+   "OpEventOf": "NoArgs",
+   "OpValueOf": "ConfigRow[]"
+  },
+  "agent.list": {
+   "OpEventOf": "NoArgs",
+   "OpValueOf": "AgentInfo[]"
+  },
+  "agent.register": {
+   "OpEventOf": "AgentSpec"
+  },
+  "ui.open": {
+   "OpEventOf": "PaneOpenArgs",
+   "OpValueOf": "UiOpenResult"
+  },
+  "ui.close": {
+   "OpEventOf": "PaneCloseInput",
+   "OpValueOf": "void"
+  },
+  "ui.panes": {
+   "OpEventOf": "NoArgs",
+   "OpValueOf": "readonly UiPane[]"
+  },
+  "ui.selection": {
+   "OpEventOf": "NoArgs",
+   "OpValueOf": "UiSelection | undefined"
+  },
+  "ui.copy": {
+   "OpEventOf": "UiCopyArgs",
+   "OpValueOf": "UiCopyResult"
+  },
+  "ui.view": {
+   "OpEventOf": "SiteView",
+   "OpValueOf": "UiViewResult"
+  },
+  "ui.blit": {
+   "OpEventOf": "UiBlitArgs",
+   "OpValueOf": "UiBlitResult"
+  },
+  "fs.ancestors": {
+   "OpEventOf": "FsAncestorsRequest",
+   "OpValueOf": "readonly FsAncestor[]"
+  },
+  "store.keys": {
+   "OpEventOf": "NoArgs",
+   "OpValueOf": "string[]"
+  },
+  "state.get": {
+   "OpEventOf": "StateGetEvent",
+   "OpValueOf": "StateRead"
+  },
+  "state.set": {
+   "OpEventOf": "StateSetEvent",
+   "OpValueOf": "StateSetResult"
+  },
+  "clock.now": {
+   "OpEventOf": "NoArgs",
+   "OpValueOf": "number"
+  },
+  "clock.sleep": {
+   "OpEventOf": "ClockWait",
+   "OpValueOf": "void"
+  },
+  "clock.after": {
+   "OpEventOf": "ClockWait",
+   "OpValueOf": "void"
+  },
+  "clock.every": {
+   "OpEventOf": "ClockWait",
+   "OpValueOf": "void"
+  },
+  "settings.read": {
+   "OpEventOf": "SettingsReadInput",
+   "OpValueOf": "Settings"
+  },
+  "model.classify": {
+   "OpValueOf": "string | undefined"
+  },
+  "audio.play": {
+   "OpValueOf": "void"
+  },
+  "mcp.call": {
+   "OpValueOf": "McpToolResult"
+  },
+  "mcp.connect": {
+   "OpValueOf": "McpConnectResult"
+  },
+  "turn.abort": {
+   "OpValueOf": "void"
+  },
+  "ui.toast": {
+   "OpValueOf": "void"
+  },
+  "ui.status": {
+   "OpValueOf": "void"
+  },
+  "ui.log": {
+   "OpValueOf": "void"
+  },
+  "ui.notice": {
+   "OpValueOf": "void"
+  },
+  "ui.invalidate": {
+   "OpValueOf": "void"
+  },
+  "ui.notify": {
+   "OpValueOf": "UiNotifyResult"
+  },
+  "fs.read": {
+   "OpValueOf": "string | FsBytes"
+  },
+  "fs.write": {
+   "OpValueOf": "void"
+  },
+  "fs.list": {
+   "OpValueOf": "FsEntry[]"
+  },
+  "fs.exists": {
+   "OpValueOf": "boolean"
+  },
+  "fs.stat": {
+   "OpValueOf": "FsStat"
+  },
+  "store.get": {
+   "OpValueOf": "unknown"
+  },
+  "store.set": {
+   "OpValueOf": "void"
+  },
+  "store.delete": {
+   "OpValueOf": "void"
+  },
+  "http.fetch": {
+   "OpValueOf": "HttpResponse"
+  },
+  "process.run": {
+   "OpValueOf": "ProcessRunResult"
+  },
+  "env.get": {
+   "OpValueOf": "string | undefined"
+  },
+  "env.set": {
+   "OpValueOf": "EnvSetResult"
+  }
+ },
+ "nouns": {
+  "plugin": [
+   {
+    "name": "name",
+    "optional": false,
+    "sig": "string"
+   },
+   {
+    "name": "root",
+    "optional": false,
+    "sig": "string"
+   }
+  ],
+  "ui": [
+   {
+    "name": "notice",
+    "optional": false,
+    "sig": "(tool_use_id: string, text: string | undefined) => void"
+   },
+   {
+    "name": "invalidate",
+    "optional": false,
+    "sig": "(event: InvalidatableEventName) => void"
+   },
+   {
+    "name": "blit",
+    "optional": false,
+    "sig": "(args: UiBlitArgs) => Promise<UiBlitResult>"
+   },
+   {
+    "name": "resolve",
+    "optional": false,
+    "sig": "<E extends ResolveInput>(e: E) => Elements[E['surface']]"
+   },
+   {
+    "name": "log",
+    "optional": false,
+    "sig": "(text: string, options?: UiLogOptions) => void"
+   },
+   {
+    "name": "ask",
+    "optional": false,
+    "sig": "(question: string, options?: readonly string[] | AskOptions) => Promise<string>"
+   },
+   {
+    "name": "toast",
+    "optional": false,
+    "sig": "(text: string, options?: ToastOptions) => void"
+   },
+   {
+    "name": "notify",
+    "optional": false,
+    "sig": "(text: string, options?: NotifyOptions) => Promise<UiNotifyResult>"
+   },
+   {
+    "name": "status",
+    "optional": false,
+    "sig": "(text: string | undefined) => void"
+   },
+   {
+    "name": "open",
+    "optional": false,
+    "sig": "(pane: PaneOpenArgs) => Promise<UiOpenResult>"
+   },
+   {
+    "name": "close",
+    "optional": false,
+    "sig": "(pane: PaneCloseArgs) => Promise<void>"
+   },
+   {
+    "name": "panes",
+    "optional": false,
+    "sig": "() => Promise<readonly UiPane[]>"
+   },
+   {
+    "name": "scroll",
+    "optional": false,
+    "sig": "(args: UiScrollArgs) => Promise<UiScrollResult>"
+   },
+   {
+    "name": "focus",
+    "optional": false,
+    "sig": "(args: UiFocusArgs) => Promise<UiFocusResult>"
+   },
+   {
+    "name": "copy",
+    "optional": false,
+    "sig": "(args: UiCopyArgs) => Promise<UiCopyResult>"
+   },
+   {
+    "name": "selection",
+    "optional": false,
+    "sig": "() => Promise<UiSelection | undefined>"
+   },
+   {
+    "name": "view",
+    "optional": false,
+    "sig": "(view: SiteView) => Promise<UiViewResult>"
+   }
+  ],
+  "model": [
+   {
+    "name": "complete",
+    "optional": false,
+    "sig": "(request: ModelCompleteRequest, options?: ModelCompleteOptions) => Promise<ModelCompleteResult>"
+   },
+   {
+    "name": "fork",
+    "optional": false,
+    "sig": "(request: ModelForkRequest) => Promise<ModelForkResult>"
+   },
+   {
+    "name": "classify",
+    "optional": false,
+    "sig": "(text: string, labels: readonly string[], options?: ClassifyOptions) => Promise<string | undefined>"
+   }
+  ],
+  "audio": [
+   {
+    "name": "play",
+    "optional": false,
+    "sig": "(clip: AudioClip, options?: PlayOptions) => Promise<void>"
+   },
+   {
+    "name": "speak",
+    "optional": false,
+    "sig": "(text: string, options?: SpeakOptions) => Promise<SpeakResult>"
+   }
+  ],
+  "mcp": [
+   {
+    "name": "call",
+    "optional": false,
+    "sig": "(server: string, tool: string, args?: Record<string, unknown>) => Promise<McpToolResult>"
+   },
+   {
+    "name": "connect",
+    "optional": false,
+    "sig": "(server: string) => Promise<McpConnectResult>"
+   }
+  ],
+  "session": [
+   {
+    "name": "messages",
+    "optional": false,
+    "sig": "SessionMessagesCall"
+   },
+   {
+    "name": "cwd",
+    "optional": false,
+    "sig": "() => Promise<string>"
+   },
+   {
+    "name": "root",
+    "optional": false,
+    "sig": "() => Promise<string>"
+   },
+   {
+    "name": "model",
+    "optional": false,
+    "sig": "() => Promise<string>"
+   },
+   {
+    "name": "turns",
+    "optional": false,
+    "sig": "() => Promise<number>"
+   },
+   {
+    "name": "id",
+    "optional": false,
+    "sig": "() => Promise<string>"
+   },
+   {
+    "name": "repo",
+    "optional": false,
+    "sig": "() => Promise<SessionRepo | null>"
+   },
+   {
+    "name": "surfaces",
+    "optional": false,
+    "sig": "() => Promise<readonly RenderSurface[]>"
+   },
+   {
+    "name": "surface",
+    "optional": false,
+    "sig": "() => Promise<RenderSurface | null>"
+   },
+   {
+    "name": "usage",
+    "optional": false,
+    "sig": "(args?: SessionUsageArgs) => Promise<SessionUsage>"
+   },
+   {
+    "name": "version",
+    "optional": false,
+    "sig": "() => Promise<SessionVersion>"
+   },
+   {
+    "name": "compact",
+    "optional": false,
+    "sig": "EventCalls['session']['compact']"
+   },
+   {
+    "name": "send",
+    "optional": false,
+    "sig": "EventCalls['session']['send']"
+   },
+   {
+    "name": "append",
+    "optional": false,
+    "sig": "(args: SessionAppendArgs) => Promise<SessionAppendResult>"
+   },
+   {
+    "name": "authorize",
+    "optional": false,
+    "sig": "() => Promise<SessionAuthorization>"
+   },
+   {
+    "name": "identity",
+    "optional": false,
+    "sig": "() => Promise<SessionIdentity>"
+   }
+  ],
+  "turn": [
+   {
+    "name": "abort",
+    "optional": false,
+    "sig": "(input: OpEventOf['turn.abort']) => Promise<void>"
+   }
+  ],
+  "prompt": [
+   {
+    "name": "submit",
+    "optional": false,
+    "sig": "EventCalls['prompt']['submit']"
+   },
+   {
+    "name": "read",
+    "optional": false,
+    "sig": "() => Promise<PromptBox>"
+   },
+   {
+    "name": "media",
+    "optional": false,
+    "sig": "(args: PromptMediaArgs) => Promise<PromptMedia>"
+   },
+   {
+    "name": "fill",
+    "optional": false,
+    "sig": "(input: PromptFillArgs) => Promise<PromptFilled>"
+   },
+   {
+    "name": "suggest",
+    "optional": false,
+    "sig": "EventCalls['prompt']['suggest']"
+   },
+   {
+    "name": "compose",
+    "optional": false,
+    "sig": "EventCalls['prompt']['compose']"
+   }
+  ],
+  "tool": [
+   {
+    "name": "list",
+    "optional": false,
+    "sig": "() => Promise<ToolInfo[]>"
+   },
+   {
+    "name": "call",
+    "optional": false,
+    "sig": "EventCalls['tool']['call']"
+   },
+   {
+    "name": "check",
+    "optional": false,
+    "sig": "EventCalls['tool']['check']"
+   },
+   {
+    "name": "register",
+    "optional": false,
+    "sig": "(tool: ToolSpec) => Promise<OpValueOf['tool.register']>"
+   }
+  ],
+  "command": [
+   {
+    "name": "list",
+    "optional": false,
+    "sig": "() => Promise<CommandInfo[]>"
+   },
+   {
+    "name": "run",
+    "optional": false,
+    "sig": "EventCalls['command']['run']"
+   },
+   {
+    "name": "register",
+    "optional": false,
+    "sig": "(command: CommandSpec) => Promise<OpValueOf['command.register']>"
+   }
+  ],
+  "config": [
+   {
+    "name": "list",
+    "optional": false,
+    "sig": "() => Promise<ConfigRow[]>"
+   },
+   {
+    "name": "set",
+    "optional": false,
+    "sig": "EventCalls['config']['set']"
+   }
+  ],
+  "telemetry": [
+   {
+    "name": "log",
+    "optional": false,
+    "sig": "(entry: TelemetryLogArgs) => Promise<void>"
+   },
+   {
+    "name": "mark",
+    "optional": false,
+    "sig": "(entry: TelemetryMarkInput) => Promise<void>"
+   }
+  ],
+  "agent": [
+   {
+    "name": "spawn",
+    "optional": false,
+    "sig": "EventCalls['agent']['spawn']"
+   },
+   {
+    "name": "list",
+    "optional": false,
+    "sig": "() => Promise<AgentInfo[]>"
+   },
+   {
+    "name": "register",
+    "optional": false,
+    "sig": "(spec: AgentSpec) => Promise<OpValueOf['agent.register']>"
+   }
+  ],
+  "fs": [
+   {
+    "name": "read",
+    "optional": false,
+    "sig": "FsReadCall"
+   },
+   {
+    "name": "write",
+    "optional": false,
+    "sig": "(path: string, text: string) => Promise<void>"
+   },
+   {
+    "name": "list",
+    "optional": false,
+    "sig": "(path?: string) => Promise<FsEntry[]>"
+   },
+   {
+    "name": "exists",
+    "optional": false,
+    "sig": "(path: string) => Promise<boolean>"
+   },
+   {
+    "name": "stat",
+    "optional": false,
+    "sig": "(path: string, options?: FsStatOptions) => Promise<FsStat>"
+   },
+   {
+    "name": "ancestors",
+    "optional": false,
+    "sig": "(request: FsAncestorsRequest) => Promise<readonly FsAncestor[]>"
+   }
+  ],
+  "store": [
+   {
+    "name": "get",
+    "optional": false,
+    "sig": "(key: string) => Promise<unknown>"
+   },
+   {
+    "name": "set",
+    "optional": false,
+    "sig": "(key: string, value: unknown) => Promise<void>"
+   },
+   {
+    "name": "delete",
+    "optional": false,
+    "sig": "(key: string) => Promise<void>"
+   },
+   {
+    "name": "keys",
+    "optional": false,
+    "sig": "() => Promise<string[]>"
+   }
+  ],
+  "state": [
+   {
+    "name": "get",
+    "optional": false,
+    "sig": "<P extends keyof PluginState & string, K extends keyof PluginState[P] & string>(ref: StateRef<P, K>) => Promise<StateRead<StateValue<P, K>>>"
+   },
+   {
+    "name": "set",
+    "optional": false,
+    "sig": "<P extends keyof PluginState & string, K extends keyof PluginState[P] & string>(ref: StateRef<P, K>, value: StateValue<P, K>, options?: StateSetOptions) => Promise<StateSetResult>"
+   }
+  ],
+  "clock": [
+   {
+    "name": "now",
+    "optional": false,
+    "sig": "() => Promise<number>"
+   },
+   {
+    "name": "sleep",
+    "optional": false,
+    "sig": "(ms: number, options?: SleepOptions) => Promise<void>"
+   },
+   {
+    "name": "after",
+    "optional": false,
+    "sig": "TimerCall"
+   },
+   {
+    "name": "every",
+    "optional": false,
+    "sig": "TimerCall"
+   }
+  ],
+  "http": [
+   {
+    "name": "fetch",
+    "optional": false,
+    "sig": "(url: string, init?: HttpInit) => Promise<HttpResponse>"
+   }
+  ],
+  "process": [
+   {
+    "name": "run",
+    "optional": false,
+    "sig": "(argv: readonly string[], init?: ProcessRunInit) => Promise<ProcessRunResult>"
+   },
+   {
+    "name": "spawn",
+    "optional": false,
+    "sig": "(request: ProcessSpawnRequest) => HookStream<ProcessSpawnChunk, ProcessSpawnResult>"
+   }
+  ],
+  "settings": [
+   {
+    "name": "read",
+    "optional": false,
+    "sig": "SettingsReadOverloads"
+   }
+  ],
+  "env": [
+   {
+    "name": "get",
+    "optional": false,
+    "sig": "(name: string) => Promise<string | undefined>"
+   },
+   {
+    "name": "set",
+    "optional": false,
+    "sig": "(name: string, value: string | undefined) => Promise<EnvSetResult>"
+   }
+  ]
+ },
+ "components": {
+  "Box": {
+   "props": [
+    "key?",
+    "hover?",
+    "position?",
+    "top?",
+    "left?",
+    "right?",
+    "bottom?",
+    "flexDirection?",
+    "flexGrow?",
+    "flexShrink?",
+    "flexWrap?",
+    "alignItems?",
+    "alignSelf?",
+    "justifyContent?",
+    "gap?",
+    "columnGap?",
+    "rowGap?",
+    "width?",
+    "height?",
+    "minWidth?",
+    "minHeight?",
+    "margin?",
+    "marginX?",
+    "marginY?",
+    "marginTop?",
+    "marginBottom?",
+    "marginLeft?",
+    "marginRight?",
+    "padding?",
+    "paddingX?",
+    "paddingY?",
+    "paddingTop?",
+    "paddingBottom?",
+    "paddingLeft?",
+    "paddingRight?",
+    "borderStyle?",
+    "borderColor?",
+    "borderDimColor?",
+    "backgroundColor?",
+    "overflow?",
+    "display?"
+   ],
+   "surfaces": [
+    "terminal",
+    "desktop",
+    "mobile",
+    "vscode"
+   ]
+  },
+  "Button": {
+   "props": [
+    "key?",
+    "label?",
+    "hotkey?",
+    "action?",
+    "plain?",
+    "dimColor?",
+    "variant?",
+    "role?",
+    "autoFocus?",
+    "hover?",
+    "onPress"
+   ],
+   "surfaces": [
+    "terminal",
+    "desktop",
+    "mobile",
+    "vscode"
+   ]
+  },
+  "Client": {
+   "props": [
+    "key",
+    "module",
+    "props?",
+    "width?",
+    "height?",
+    "flexGrow?"
+   ],
+   "surfaces": [
+    "terminal",
+    "desktop"
+   ]
+  },
+  "Code": {
+   "props": [
+    "source",
+    "language?",
+    "path?",
+    "startLine?",
+    "format?",
+    "wrap?"
+   ],
+   "surfaces": [
+    "terminal",
+    "desktop",
+    "mobile",
+    "vscode"
+   ]
+  },
+  "Image": {
+   "props": [
+    "key?",
+    "source",
+    "columns",
+    "rows",
+    "alt"
+   ],
+   "surfaces": [
+    "terminal"
+   ]
+  },
+  "Input": {
+   "props": [
+    "key",
+    "label?",
+    "placeholder?",
+    "value?",
+    "submitLabel?",
+    "rows?",
+    "autoFocus?",
+    "onInput?",
+    "onSubmit"
+   ],
+   "surfaces": [
+    "terminal",
+    "desktop",
+    "vscode"
+   ]
+  },
+  "Link": {
+   "props": [
+    "href",
+    "label?"
+   ],
+   "surfaces": [
+    "terminal",
+    "desktop",
+    "mobile",
+    "vscode"
+   ]
+  },
+  "Markdown": {
+   "props": [
+    "key?",
+    "text",
+    "dimColor?",
+    "onLinkPress?",
+    "pressableLinks?"
+   ],
+   "surfaces": [
+    "terminal",
+    "desktop",
+    "mobile",
+    "vscode"
+   ]
+  },
+  "Raster": {
+   "props": [
+    "key",
+    "columns",
+    "rows",
+    "cells"
+   ],
+   "surfaces": [
+    "terminal"
+   ]
+  },
+  "Select": {
+   "props": [
+    "key",
+    "label?",
+    "options",
+    "value?",
+    "autoFocus?",
+    "onSelect"
+   ],
+   "surfaces": [
+    "terminal",
+    "desktop",
+    "vscode"
+   ]
+  },
+  "Svg": {
+   "props": [
+    "source",
+    "alt",
+    "width?",
+    "height?",
+    "isInteractive?"
+   ],
+   "surfaces": [
+    "desktop",
+    "mobile",
+    "vscode"
+   ]
+  },
+  "Text": {
+   "props": [
+    "hover?",
+    "color?",
+    "backgroundColor?",
+    "dimColor?",
+    "size?",
+    "weight?",
+    "mono?",
+    "tabular?",
+    "bold?",
+    "italic?",
+    "underline?",
+    "strikethrough?",
+    "inverse?",
+    "dir?",
+    "wrap?"
+   ],
+   "surfaces": [
+    "terminal",
+    "desktop",
+    "mobile",
+    "vscode"
+   ]
+  }
+ },
+ "tools": [],
+ "exports": [
+  {
+   "kind": "type",
+   "name": "AgentCallRecord"
+  },
+  {
+   "kind": "type",
+   "name": "AgentInfo"
+  },
+  {
+   "kind": "type",
+   "name": "AgentLoop"
+  },
+  {
+   "kind": "type",
+   "name": "AgentOfferInput"
+  },
+  {
+   "kind": "type",
+   "name": "AgentOfferResult"
+  },
+  {
+   "kind": "type",
+   "name": "AgentSpawnArgs"
+  },
+  {
+   "kind": "type",
+   "name": "AgentSpawnInput"
+  },
+  {
+   "kind": "type",
+   "name": "AgentSpawnResult"
+  },
+  {
+   "kind": "type",
+   "name": "AgentStatus"
+  },
+  {
+   "kind": "type",
+   "name": "AgentTeammateRecord"
+  },
+  {
+   "kind": "type",
+   "name": "AnyEventHook"
+  },
+  {
+   "kind": "type",
+   "name": "Args"
+  },
+  {
+   "kind": "type",
+   "name": "AskOptions"
+  },
+  {
+   "kind": "type",
+   "name": "Atom"
+  },
+  {
+   "kind": "type",
+   "name": "AtomFunction"
+  },
+  {
+   "kind": "type",
+   "name": "AtomOptions"
+  },
+  {
+   "kind": "type",
+   "name": "AttributionTextInput"
+  },
+  {
+   "kind": "type",
+   "name": "AttributionTextKind"
+  },
+  {
+   "kind": "type",
+   "name": "AttributionTextResult"
+  },
+  {
+   "kind": "type",
+   "name": "AudioClip"
+  },
+  {
+   "kind": "type",
+   "name": "BoxHoverProps"
+  },
+  {
+   "kind": "type",
+   "name": "BoxProps"
+  },
+  {
+   "kind": "type",
+   "name": "BuiltinToolCallInput"
+  },
+  {
+   "kind": "interface",
+   "name": "BuiltinToolInputs"
+  },
+  {
+   "kind": "type",
+   "name": "BuiltinToolName"
+  },
+  {
+   "kind": "interface",
+   "name": "BuiltinToolResults"
+  },
+  {
+   "kind": "type",
+   "name": "ButtonProps"
+  },
+  {
+   "kind": "type",
+   "name": "CatchHandler"
+  },
+  {
+   "kind": "type",
+   "name": "Caught"
+  },
+  {
+   "kind": "type",
+   "name": "Chunk"
+  },
+  {
+   "kind": "type",
+   "name": "ChunkOf"
+  },
+  {
+   "kind": "type",
+   "name": "ClassicEventName"
+  },
+  {
+   "kind": "type",
+   "name": "ClassicEventOf"
+  },
+  {
+   "kind": "type",
+   "name": "ClassicHookEvent"
+  },
+  {
+   "kind": "type",
+   "name": "ClassicHookInputs"
+  },
+  {
+   "kind": "type",
+   "name": "ClassicResult"
+  },
+  {
+   "kind": "type",
+   "name": "ClassicResultFields"
+  },
+  {
+   "kind": "type",
+   "name": "ClassicResultOf"
+  },
+  {
+   "kind": "type",
+   "name": "ClassifyOptions"
+  },
+  {
+   "kind": "type",
+   "name": "ClientElements"
+  },
+  {
+   "kind": "type",
+   "name": "ClientKeyEvent"
+  },
+  {
+   "kind": "type",
+   "name": "ClientModule"
+  },
+  {
+   "kind": "type",
+   "name": "ClientPointerEvent"
+  },
+  {
+   "kind": "type",
+   "name": "ClientPointerType"
+  },
+  {
+   "kind": "type",
+   "name": "ClientProps"
+  },
+  {
+   "kind": "type",
+   "name": "ClientSurface"
+  },
+  {
+   "kind": "type",
+   "name": "CodeProps"
+  },
+  {
+   "kind": "type",
+   "name": "Color"
+  },
+  {
+   "kind": "type",
+   "name": "CommandDescribeInput"
+  },
+  {
+   "kind": "type",
+   "name": "CommandDescribeResult"
+  },
+  {
+   "kind": "type",
+   "name": "CommandInfo"
+  },
+  {
+   "kind": "type",
+   "name": "CommandPresentation"
+  },
+  {
+   "kind": "type",
+   "name": "CommandRunArgs"
+  },
+  {
+   "kind": "type",
+   "name": "CommandRunInput"
+  },
+  {
+   "kind": "type",
+   "name": "CommandRunResult"
+  },
+  {
+   "kind": "type",
+   "name": "CommandSource"
+  },
+  {
+   "kind": "type",
+   "name": "CommandSpec"
+  },
+  {
+   "kind": "type",
+   "name": "ConfigDescribeInput"
+  },
+  {
+   "kind": "type",
+   "name": "ConfigDescribeResult"
+  },
+  {
+   "kind": "type",
+   "name": "ConfigKind"
+  },
+  {
+   "kind": "type",
+   "name": "ConfigOrigin"
+  },
+  {
+   "kind": "type",
+   "name": "ConfigRow"
+  },
+  {
+   "kind": "type",
+   "name": "ConfigSetArgs"
+  },
+  {
+   "kind": "type",
+   "name": "ConfigSetInput"
+  },
+  {
+   "kind": "type",
+   "name": "ConfigSetResult"
+  },
+  {
+   "kind": "type",
+   "name": "ConfigValue"
+  },
+  {
+   "kind": "type",
+   "name": "ContextAgent"
+  },
+  {
+   "kind": "type",
+   "name": "ContextBreakdownDetail"
+  },
+  {
+   "kind": "type",
+   "name": "ContextCategory"
+  },
+  {
+   "kind": "type",
+   "name": "ContextCategoryKind"
+  },
+  {
+   "kind": "type",
+   "name": "ContextGridSquare"
+  },
+  {
+   "kind": "type",
+   "name": "ContextMcpTool"
+  },
+  {
+   "kind": "type",
+   "name": "ContextMemoryFile"
+  },
+  {
+   "kind": "type",
+   "name": "ContextSkill"
+  },
+  {
+   "kind": "type",
+   "name": "ContextSkills"
+  },
+  {
+   "kind": "type",
+   "name": "ContextSlashCommands"
+  },
+  {
+   "kind": "type",
+   "name": "ContextWindowSource"
+  },
+  {
+   "kind": "interface",
+   "name": "CoreEngineInterface"
+  },
+  {
+   "kind": "type",
+   "name": "Derived"
+  },
+  {
+   "kind": "type",
+   "name": "DeriveFunction"
+  },
+  {
+   "kind": "type",
+   "name": "ElementChildren"
+  },
+  {
+   "kind": "type",
+   "name": "ElementConstructor"
+  },
+  {
+   "kind": "type",
+   "name": "ElementName"
+  },
+  {
+   "kind": "interface",
+   "name": "Elements"
+  },
+  {
+   "kind": "type",
+   "name": "ElementTable"
+  },
+  {
+   "kind": "type",
+   "name": "EngineCreateInput"
+  },
+  {
+   "kind": "type",
+   "name": "EngineCreateResult"
+  },
+  {
+   "kind": "type",
+   "name": "EngineEventOf"
+  },
+  {
+   "kind": "interface",
+   "name": "EngineInterface"
+  },
+  {
+   "kind": "type",
+   "name": "EngineInterfaceBuilt"
+  },
+  {
+   "kind": "type",
+   "name": "EngineResultOf"
+  },
+  {
+   "kind": "type",
+   "name": "EventCalls"
+  },
+  {
+   "kind": "type",
+   "name": "EventName"
+  },
+  {
+   "kind": "type",
+   "name": "EventOf"
+  },
+  {
+   "kind": "type",
+   "name": "EventResult"
+  },
+  {
+   "kind": "type",
+   "name": "Events"
+  },
+  {
+   "kind": "type",
+   "name": "Frozen"
+  },
+  {
+   "kind": "type",
+   "name": "FsAncestor"
+  },
+  {
+   "kind": "type",
+   "name": "FsAncestorPart"
+  },
+  {
+   "kind": "type",
+   "name": "FsAncestorsRequest"
+  },
+  {
+   "kind": "type",
+   "name": "FsBytes"
+  },
+  {
+   "kind": "type",
+   "name": "FsEntry"
+  },
+  {
+   "kind": "type",
+   "name": "FsReadAs"
+  },
+  {
+   "kind": "type",
+   "name": "FsReadBytesOptions"
+  },
+  {
+   "kind": "type",
+   "name": "FsReadCall"
+  },
+  {
+   "kind": "type",
+   "name": "FsReadOptions"
+  },
+  {
+   "kind": "type",
+   "name": "FsStat"
+  },
+  {
+   "kind": "type",
+   "name": "FsStatOptions"
+  },
+  {
+   "kind": "type",
+   "name": "Glob"
+  },
+  {
+   "kind": "type",
+   "name": "GlobHook"
+  },
+  {
+   "kind": "type",
+   "name": "GlobNext"
+  },
+  {
+   "kind": "type",
+   "name": "Hook"
+  },
+  {
+   "kind": "type",
+   "name": "HookBudget"
+  },
+  {
+   "kind": "type",
+   "name": "HookFailure"
+  },
+  {
+   "kind": "type",
+   "name": "HookFor"
+  },
+  {
+   "kind": "type",
+   "name": "HookOf"
+  },
+  {
+   "kind": "type",
+   "name": "HooksModule"
+  },
+  {
+   "kind": "type",
+   "name": "HookStream"
+  },
+  {
+   "kind": "type",
+   "name": "HttpInit"
+  },
+  {
+   "kind": "type",
+   "name": "HttpResponse"
+  },
+  {
+   "kind": "type",
+   "name": "ImageBlitArgs"
+  },
+  {
+   "kind": "type",
+   "name": "ImageProps"
+  },
+  {
+   "kind": "type",
+   "name": "ImageSource"
+  },
+  {
+   "kind": "type",
+   "name": "InputProps"
+  },
+  {
+   "kind": "type",
+   "name": "InstructionFile"
+  },
+  {
+   "kind": "type",
+   "name": "InstructionFileKind"
+  },
+  {
+   "kind": "type",
+   "name": "InvalidatableEventName"
+  },
+  {
+   "kind": "type",
+   "name": "JsonValue"
+  },
+  {
+   "kind": "type",
+   "name": "LinkProps"
+  },
+  {
+   "kind": "type",
+   "name": "MarkdownLeafProps"
+  },
+  {
+   "kind": "type",
+   "name": "MarkdownProps"
+  },
+  {
+   "kind": "type",
+   "name": "MatchedEvent"
+  },
+  {
+   "kind": "type",
+   "name": "MatchedHook"
+  },
+  {
+   "kind": "type",
+   "name": "MatchedResult"
+  },
+  {
+   "kind": "type",
+   "name": "MatchedStreamHook"
+  },
+  {
+   "kind": "type",
+   "name": "Matcher"
+  },
+  {
+   "kind": "type",
+   "name": "McpContentBlock"
+  },
+  {
+   "kind": "type",
+   "name": "McpToolCallInput"
+  },
+  {
+   "kind": "interface",
+   "name": "McpToolInputs"
+  },
+  {
+   "kind": "type",
+   "name": "McpToolName"
+  },
+  {
+   "kind": "type",
+   "name": "McpToolResult"
+  },
+  {
+   "kind": "type",
+   "name": "MemberOfFunction"
+  },
+  {
+   "kind": "type",
+   "name": "ModelApiError"
+  },
+  {
+   "kind": "type",
+   "name": "ModelCompleteInput"
+  },
+  {
+   "kind": "type",
+   "name": "ModelCompleteOptions"
+  },
+  {
+   "kind": "type",
+   "name": "ModelCompleteRequest"
+  },
+  {
+   "kind": "type",
+   "name": "ModelCompleteResult"
+  },
+  {
+   "kind": "type",
+   "name": "ModelEffort"
+  },
+  {
+   "kind": "type",
+   "name": "ModelForkRequest"
+  },
+  {
+   "kind": "type",
+   "name": "ModelForkResult"
+  },
+  {
+   "kind": "type",
+   "name": "ModelTextBlock"
+  },
+  {
+   "kind": "type",
+   "name": "ModelUsage"
+  },
+  {
+   "kind": "type",
+   "name": "Namespace"
+  },
+  {
+   "kind": "type",
+   "name": "Narrowed"
+  },
+  {
+   "kind": "type",
+   "name": "Next"
+  },
+  {
+   "kind": "type",
+   "name": "NextBudget"
+  },
+  {
+   "kind": "type",
+   "name": "NextResult"
+  },
+  {
+   "kind": "type",
+   "name": "NextResultFor"
+  },
+  {
+   "kind": "type",
+   "name": "NoEngineInterface"
+  },
+  {
+   "kind": "type",
+   "name": "NotifyOptions"
+  },
+  {
+   "kind": "type",
+   "name": "NounEventOf"
+  },
+  {
+   "kind": "type",
+   "name": "On"
+  },
+  {
+   "kind": "type",
+   "name": "OpEventName"
+  },
+  {
+   "kind": "type",
+   "name": "OpEventOf"
+  },
+  {
+   "kind": "type",
+   "name": "OpEventResult"
+  },
+  {
+   "kind": "type",
+   "name": "OpValueOf"
+  },
+  {
+   "kind": "type",
+   "name": "Origin"
+  },
+  {
+   "kind": "type",
+   "name": "PaneCloseArgs"
+  },
+  {
+   "kind": "type",
+   "name": "PaneCloseInput"
+  },
+  {
+   "kind": "type",
+   "name": "PaneCloseOrigin"
+  },
+  {
+   "kind": "type",
+   "name": "PaneOpenArgs"
+  },
+  {
+   "kind": "type",
+   "name": "Pattern"
+  },
+  {
+   "kind": "type",
+   "name": "PermissionRequestDecision"
+  },
+  {
+   "kind": "type",
+   "name": "PlayOptions"
+  },
+  {
+   "kind": "type",
+   "name": "PluginOptions"
+  },
+  {
+   "kind": "type",
+   "name": "PluginRegisterInput"
+  },
+  {
+   "kind": "type",
+   "name": "PluginRegisterResult"
+  },
+  {
+   "kind": "type",
+   "name": "PluginRegisterUses"
+  },
+  {
+   "kind": "interface",
+   "name": "PluginState"
+  },
+  {
+   "kind": "type",
+   "name": "PressedLink"
+  },
+  {
+   "kind": "type",
+   "name": "PreToolUseDecision"
+  },
+  {
+   "kind": "type",
+   "name": "PreToolUseResult"
+  },
+  {
+   "kind": "type",
+   "name": "ProcessRunInit"
+  },
+  {
+   "kind": "type",
+   "name": "ProcessRunResult"
+  },
+  {
+   "kind": "type",
+   "name": "ProcessSpawnChunk"
+  },
+  {
+   "kind": "type",
+   "name": "ProcessSpawnRequest"
+  },
+  {
+   "kind": "type",
+   "name": "ProcessSpawnResult"
+  },
+  {
+   "kind": "type",
+   "name": "PromptAttachmentDetailOf"
+  },
+  {
+   "kind": "type",
+   "name": "PromptAttachmentInput"
+  },
+  {
+   "kind": "type",
+   "name": "PromptAttachmentOrigin"
+  },
+  {
+   "kind": "type",
+   "name": "PromptAttachmentResult"
+  },
+  {
+   "kind": "type",
+   "name": "PromptAutocompleteInput"
+  },
+  {
+   "kind": "type",
+   "name": "PromptAutocompleteResult"
+  },
+  {
+   "kind": "type",
+   "name": "PromptAutocompleteSuggestion"
+  },
+  {
+   "kind": "type",
+   "name": "PromptBox"
+  },
+  {
+   "kind": "type",
+   "name": "PromptChangeInput"
+  },
+  {
+   "kind": "type",
+   "name": "PromptChangeOrigin"
+  },
+  {
+   "kind": "type",
+   "name": "PromptChangeResult"
+  },
+  {
+   "kind": "type",
+   "name": "PromptComposeArgs"
+  },
+  {
+   "kind": "type",
+   "name": "PromptComposeInput"
+  },
+  {
+   "kind": "type",
+   "name": "PromptComposeResult"
+  },
+  {
+   "kind": "type",
+   "name": "PromptComposeScope"
+  },
+  {
+   "kind": "type",
+   "name": "PromptComposeSection"
+  },
+  {
+   "kind": "type",
+   "name": "PromptComposeTrait"
+  },
+  {
+   "kind": "type",
+   "name": "PromptContextBlock"
+  },
+  {
+   "kind": "type",
+   "name": "PromptContextBlocks"
+  },
+  {
+   "kind": "type",
+   "name": "PromptContextInput"
+  },
+  {
+   "kind": "type",
+   "name": "PromptContextResult"
+  },
+  {
+   "kind": "type",
+   "name": "PromptDecoration"
+  },
+  {
+   "kind": "type",
+   "name": "PromptEditInput"
+  },
+  {
+   "kind": "type",
+   "name": "PromptEditOrigin"
+  },
+  {
+   "kind": "type",
+   "name": "PromptEditResult"
+  },
+  {
+   "kind": "type",
+   "name": "PromptFillArgs"
+  },
+  {
+   "kind": "type",
+   "name": "PromptFilled"
+  },
+  {
+   "kind": "type",
+   "name": "PromptFillInput"
+  },
+  {
+   "kind": "type",
+   "name": "PromptFillMode"
+  },
+  {
+   "kind": "type",
+   "name": "PromptFillOrigin"
+  },
+  {
+   "kind": "type",
+   "name": "PromptFillResult"
+  },
+  {
+   "kind": "type",
+   "name": "PromptMedia"
+  },
+  {
+   "kind": "type",
+   "name": "PromptMediaArgs"
+  },
+  {
+   "kind": "type",
+   "name": "PromptMentionAttached"
+  },
+  {
+   "kind": "type",
+   "name": "PromptMentionInput"
+  },
+  {
+   "kind": "type",
+   "name": "PromptMentionResult"
+  },
+  {
+   "kind": "type",
+   "name": "PromptOrigin"
+  },
+  {
+   "kind": "type",
+   "name": "PromptSectionInput"
+  },
+  {
+   "kind": "type",
+   "name": "PromptSectionResult"
+  },
+  {
+   "kind": "type",
+   "name": "PromptSubmitArgs"
+  },
+  {
+   "kind": "type",
+   "name": "PromptSubmitAttachment"
+  },
+  {
+   "kind": "type",
+   "name": "PromptSubmitCommand"
+  },
+  {
+   "kind": "type",
+   "name": "PromptSubmitInput"
+  },
+  {
+   "kind": "type",
+   "name": "PromptSubmitResult"
+  },
+  {
+   "kind": "type",
+   "name": "PromptSuggestArgs"
+  },
+  {
+   "kind": "type",
+   "name": "PromptSuggestInput"
+  },
+  {
+   "kind": "type",
+   "name": "PromptSuggestOrigin"
+  },
+  {
+   "kind": "type",
+   "name": "PromptSuggestResult"
+  },
+  {
+   "kind": "type",
+   "name": "RasterBlitArgs"
+  },
+  {
+   "kind": "type",
+   "name": "RasterProps"
+  },
+  {
+   "kind": "type",
+   "name": "ReadFunction"
+  },
+  {
+   "kind": "type",
+   "name": "Register"
+  },
+  {
+   "kind": "type",
+   "name": "RegisteredToolSpec"
+  },
+  {
+   "kind": "type",
+   "name": "Registration"
+  },
+  {
+   "kind": "type",
+   "name": "RenderChildren"
+  },
+  {
+   "kind": "type",
+   "name": "RenderComponent"
+  },
+  {
+   "kind": "type",
+   "name": "RenderElement"
+  },
+  {
+   "kind": "type",
+   "name": "RenderEventName"
+  },
+  {
+   "kind": "type",
+   "name": "RenderInput"
+  },
+  {
+   "kind": "type",
+   "name": "RenderInputOf"
+  },
+  {
+   "kind": "type",
+   "name": "RenderNode"
+  },
+  {
+   "kind": "type",
+   "name": "RenderPropsOf"
+  },
+  {
+   "kind": "type",
+   "name": "RenderResultOf"
+  },
+  {
+   "kind": "type",
+   "name": "RenderSurface"
+  },
+  {
+   "kind": "type",
+   "name": "RenderViewport"
+  },
+  {
+   "kind": "type",
+   "name": "ResolveInput"
+  },
+  {
+   "kind": "type",
+   "name": "ResolveInputOf"
+  },
+  {
+   "kind": "type",
+   "name": "ResultOf"
+  },
+  {
+   "kind": "type",
+   "name": "Selected"
+  },
+  {
+   "kind": "type",
+   "name": "SelectOption"
+  },
+  {
+   "kind": "type",
+   "name": "SelectProps"
+  },
+  {
+   "kind": "type",
+   "name": "SessionAttachInput"
+  },
+  {
+   "kind": "type",
+   "name": "SessionAttachResult"
+  },
+  {
+   "kind": "type",
+   "name": "SessionAuthorization"
+  },
+  {
+   "kind": "type",
+   "name": "SessionCompactArgs"
+  },
+  {
+   "kind": "type",
+   "name": "SessionCompacted"
+  },
+  {
+   "kind": "type",
+   "name": "SessionCompactInput"
+  },
+  {
+   "kind": "type",
+   "name": "SessionCompactResult"
+  },
+  {
+   "kind": "type",
+   "name": "SessionCompactSkipped"
+  },
+  {
+   "kind": "type",
+   "name": "SessionCompactTrigger"
+  },
+  {
+   "kind": "type",
+   "name": "SessionContextBreakdown"
+  },
+  {
+   "kind": "type",
+   "name": "SessionContextUsage"
+  },
+  {
+   "kind": "type",
+   "name": "SessionCost"
+  },
+  {
+   "kind": "type",
+   "name": "SessionDetachInput"
+  },
+  {
+   "kind": "type",
+   "name": "SessionDetachReason"
+  },
+  {
+   "kind": "type",
+   "name": "SessionDetachResult"
+  },
+  {
+   "kind": "type",
+   "name": "SessionEndInput"
+  },
+  {
+   "kind": "type",
+   "name": "SessionEndReason"
+  },
+  {
+   "kind": "type",
+   "name": "SessionEndResult"
+  },
+  {
+   "kind": "type",
+   "name": "SessionIdentity"
+  },
+  {
+   "kind": "type",
+   "name": "SessionMeasureInput"
+  },
+  {
+   "kind": "type",
+   "name": "SessionMeasureResult"
+  },
+  {
+   "kind": "type",
+   "name": "SessionMessage"
+  },
+  {
+   "kind": "type",
+   "name": "SessionRateLimit"
+  },
+  {
+   "kind": "type",
+   "name": "SessionReceiveEvent"
+  },
+  {
+   "kind": "type",
+   "name": "SessionReceiveInput"
+  },
+  {
+   "kind": "type",
+   "name": "SessionReceiveOrigin"
+  },
+  {
+   "kind": "type",
+   "name": "SessionReceiveResult"
+  },
+  {
+   "kind": "type",
+   "name": "SessionRepo"
+  },
+  {
+   "kind": "type",
+   "name": "SessionResume"
+  },
+  {
+   "kind": "type",
+   "name": "SessionSendAddress"
+  },
+  {
+   "kind": "type",
+   "name": "SessionSendArgs"
+  },
+  {
+   "kind": "type",
+   "name": "SessionSendInput"
+  },
+  {
+   "kind": "type",
+   "name": "SessionSendOrigin"
+  },
+  {
+   "kind": "type",
+   "name": "SessionSendResult"
+  },
+  {
+   "kind": "type",
+   "name": "SessionStartInput"
+  },
+  {
+   "kind": "type",
+   "name": "SessionStartResult"
+  },
+  {
+   "kind": "type",
+   "name": "SessionUsage"
+  },
+  {
+   "kind": "type",
+   "name": "SessionUsageArgs"
+  },
+  {
+   "kind": "type",
+   "name": "SessionVersion"
+  },
+  {
+   "kind": "type",
+   "name": "Settings"
+  },
+  {
+   "kind": "type",
+   "name": "SettingsReadArgs"
+  },
+  {
+   "kind": "type",
+   "name": "SettingsSource"
+  },
+  {
+   "kind": "type",
+   "name": "Shaped"
+  },
+  {
+   "kind": "type",
+   "name": "ShapedValue"
+  },
+  {
+   "kind": "type",
+   "name": "SiteScroll"
+  },
+  {
+   "kind": "type",
+   "name": "SiteView"
+  },
+  {
+   "kind": "interface",
+   "name": "SkillFrontmatter"
+  },
+  {
+   "kind": "interface",
+   "name": "SkillFrontmatterList"
+  },
+  {
+   "kind": "type",
+   "name": "SkillFrontmatterValue"
+  },
+  {
+   "kind": "type",
+   "name": "SkillPromptArgs"
+  },
+  {
+   "kind": "type",
+   "name": "SkillPromptInput"
+  },
+  {
+   "kind": "type",
+   "name": "SkillPromptResult"
+  },
+  {
+   "kind": "type",
+   "name": "SkillSource"
+  },
+  {
+   "kind": "type",
+   "name": "SleepOptions"
+  },
+  {
+   "kind": "type",
+   "name": "SourceValues"
+  },
+  {
+   "kind": "type",
+   "name": "Space"
+  },
+  {
+   "kind": "type",
+   "name": "SpeakOptions"
+  },
+  {
+   "kind": "type",
+   "name": "SpeakResult"
+  },
+  {
+   "kind": "type",
+   "name": "StarNext"
+  },
+  {
+   "kind": "type",
+   "name": "StateAddress"
+  },
+  {
+   "kind": "type",
+   "name": "StateDollar"
+  },
+  {
+   "kind": "type",
+   "name": "StateFamily"
+  },
+  {
+   "kind": "type",
+   "name": "StateGetEvent"
+  },
+  {
+   "kind": "type",
+   "name": "StateRead"
+  },
+  {
+   "kind": "type",
+   "name": "StateRef"
+  },
+  {
+   "kind": "type",
+   "name": "StateSetEvent"
+  },
+  {
+   "kind": "type",
+   "name": "StateSetOptions"
+  },
+  {
+   "kind": "type",
+   "name": "StateSetResult"
+  },
+  {
+   "kind": "type",
+   "name": "StateValue"
+  },
+  {
+   "kind": "type",
+   "name": "StateWrite"
+  },
+  {
+   "kind": "type",
+   "name": "StreamHook"
+  },
+  {
+   "kind": "type",
+   "name": "StreamHookBody"
+  },
+  {
+   "kind": "type",
+   "name": "StreamingEventName"
+  },
+  {
+   "kind": "type",
+   "name": "StreamNext"
+  },
+  {
+   "kind": "type",
+   "name": "SvgProps"
+  },
+  {
+   "kind": "type",
+   "name": "TargetTier"
+  },
+  {
+   "kind": "type",
+   "name": "TelemetryAttribute"
+  },
+  {
+   "kind": "type",
+   "name": "TelemetryChoice"
+  },
+  {
+   "kind": "type",
+   "name": "TelemetryDestination"
+  },
+  {
+   "kind": "type",
+   "name": "TelemetryLogArgs"
+  },
+  {
+   "kind": "type",
+   "name": "TelemetryLogInput"
+  },
+  {
+   "kind": "type",
+   "name": "TelemetryLogResult"
+  },
+  {
+   "kind": "type",
+   "name": "TelemetryMarkInput"
+  },
+  {
+   "kind": "type",
+   "name": "TelemetryMarkKind"
+  },
+  {
+   "kind": "type",
+   "name": "TelemetryMarkResult"
+  },
+  {
+   "kind": "type",
+   "name": "TelemetryProp"
+  },
+  {
+   "kind": "type",
+   "name": "TelemetryRecordEntry"
+  },
+  {
+   "kind": "type",
+   "name": "TelemetryRowArgs"
+  },
+  {
+   "kind": "type",
+   "name": "TelemetryRowEntry"
+  },
+  {
+   "kind": "type",
+   "name": "TelemetrySpan"
+  },
+  {
+   "kind": "type",
+   "name": "TextHoverProps"
+  },
+  {
+   "kind": "type",
+   "name": "TextProps"
+  },
+  {
+   "kind": "type",
+   "name": "ThemeKey"
+  },
+  {
+   "kind": "type",
+   "name": "Tier"
+  },
+  {
+   "kind": "type",
+   "name": "Timer"
+  },
+  {
+   "kind": "type",
+   "name": "TimerCall"
+  },
+  {
+   "kind": "type",
+   "name": "ToastOptions"
+  },
+  {
+   "kind": "type",
+   "name": "ToolCallArgs"
+  },
+  {
+   "kind": "type",
+   "name": "ToolCallEnvelope"
+  },
+  {
+   "kind": "type",
+   "name": "ToolCallInput"
+  },
+  {
+   "kind": "type",
+   "name": "ToolCallReserved"
+  },
+  {
+   "kind": "type",
+   "name": "ToolCallResult"
+  },
+  {
+   "kind": "type",
+   "name": "ToolDeferral"
+  },
+  {
+   "kind": "type",
+   "name": "ToolDescribeInput"
+  },
+  {
+   "kind": "type",
+   "name": "ToolDescribeResult"
+  },
+  {
+   "kind": "type",
+   "name": "ToolGroupCall"
+  },
+  {
+   "kind": "type",
+   "name": "ToolInfo"
+  },
+  {
+   "kind": "type",
+   "name": "ToolInputOf"
+  },
+  {
+   "kind": "type",
+   "name": "ToolRequestMeta"
+  },
+  {
+   "kind": "type",
+   "name": "ToolResultOf"
+  },
+  {
+   "kind": "type",
+   "name": "ToolResultSummary"
+  },
+  {
+   "kind": "type",
+   "name": "ToolSpec"
+  },
+  {
+   "kind": "type",
+   "name": "ToolUseSummary"
+  },
+  {
+   "kind": "type",
+   "name": "TraceEntry"
+  },
+  {
+   "kind": "type",
+   "name": "TraceOutcome"
+  },
+  {
+   "kind": "type",
+   "name": "TurnCompleteInput"
+  },
+  {
+   "kind": "type",
+   "name": "TurnCompleteReason"
+  },
+  {
+   "kind": "type",
+   "name": "TurnCompleteResult"
+  },
+  {
+   "kind": "type",
+   "name": "TurnRefusal"
+  },
+  {
+   "kind": "type",
+   "name": "TurnStartInput"
+  },
+  {
+   "kind": "type",
+   "name": "TurnStartResult"
+  },
+  {
+   "kind": "type",
+   "name": "TurnStepChunk"
+  },
+  {
+   "kind": "type",
+   "name": "TurnStepEngineChunk"
+  },
+  {
+   "kind": "type",
+   "name": "TurnStepInput"
+  },
+  {
+   "kind": "type",
+   "name": "TurnStepInputChunk"
+  },
+  {
+   "kind": "type",
+   "name": "TurnStepResult"
+  },
+  {
+   "kind": "type",
+   "name": "TurnStepServerToolUse"
+  },
+  {
+   "kind": "type",
+   "name": "TurnStepStopChunk"
+  },
+  {
+   "kind": "type",
+   "name": "TurnStepTextChunk"
+  },
+  {
+   "kind": "type",
+   "name": "TurnStepThinkingChunk"
+  },
+  {
+   "kind": "type",
+   "name": "TurnStepToolChunk"
+  },
+  {
+   "kind": "type",
+   "name": "TurnStepToolUse"
+  },
+  {
+   "kind": "type",
+   "name": "TurnUsage"
+  },
+  {
+   "kind": "type",
+   "name": "UiBlitArgs"
+  },
+  {
+   "kind": "type",
+   "name": "UiBlitResult"
+  },
+  {
+   "kind": "type",
+   "name": "UiCopyArgs"
+  },
+  {
+   "kind": "type",
+   "name": "UiCopyResult"
+  },
+  {
+   "kind": "type",
+   "name": "UiFocusArgs"
+  },
+  {
+   "kind": "type",
+   "name": "UiFocusComponent"
+  },
+  {
+   "kind": "type",
+   "name": "UiFocusInput"
+  },
+  {
+   "kind": "type",
+   "name": "UiFocusOrigin"
+  },
+  {
+   "kind": "type",
+   "name": "UiFocusResult"
+  },
+  {
+   "kind": "type",
+   "name": "UiInputArgument"
+  },
+  {
+   "kind": "type",
+   "name": "UiInputResult"
+  },
+  {
+   "kind": "type",
+   "name": "UiLogOptions"
+  },
+  {
+   "kind": "type",
+   "name": "UiLogSink"
+  },
+  {
+   "kind": "type",
+   "name": "UiMessageArgument"
+  },
+  {
+   "kind": "type",
+   "name": "UiMessageResult"
+  },
+  {
+   "kind": "type",
+   "name": "UiNotifyResult"
+  },
+  {
+   "kind": "type",
+   "name": "UiOpenResult"
+  },
+  {
+   "kind": "type",
+   "name": "UiPane"
+  },
+  {
+   "kind": "type",
+   "name": "UiPressArgument"
+  },
+  {
+   "kind": "type",
+   "name": "UiPressResult"
+  },
+  {
+   "kind": "type",
+   "name": "UiScrollArgs"
+  },
+  {
+   "kind": "type",
+   "name": "UiScrollBlock"
+  },
+  {
+   "kind": "type",
+   "name": "UiScrollComponent"
+  },
+  {
+   "kind": "type",
+   "name": "UiScrollInput"
+  },
+  {
+   "kind": "type",
+   "name": "UiScrollOrigin"
+  },
+  {
+   "kind": "type",
+   "name": "UiScrollPointer"
+  },
+  {
+   "kind": "type",
+   "name": "UiScrollResult"
+  },
+  {
+   "kind": "type",
+   "name": "UiScrollTarget"
+  },
+  {
+   "kind": "type",
+   "name": "UiSelectArgument"
+  },
+  {
+   "kind": "type",
+   "name": "UiSelectResult"
+  },
+  {
+   "kind": "type",
+   "name": "UiViewResult"
+  },
+  {
+   "kind": "type",
+   "name": "UpdateFunction"
+  },
+  {
+   "kind": "type",
+   "name": "UsageUnit"
+  },
+  {
+   "kind": "const",
+   "name": "atom"
+  },
+  {
+   "kind": "const",
+   "name": "derive"
+  },
+  {
+   "kind": "const",
+   "name": "memberOf"
+  },
+  {
+   "kind": "const",
+   "name": "read"
+  },
+  {
+   "kind": "const",
+   "name": "update"
+  },
+  {
+   "kind": "type",
+   "name": "AsymmetricMatcher"
+  },
+  {
+   "kind": "type",
+   "name": "AsyncMatchers"
+  },
+  {
+   "kind": "type",
+   "name": "ClassicEvent"
+  },
+  {
+   "kind": "type",
+   "name": "ClassicFields"
+  },
+  {
+   "kind": "type",
+   "name": "ClientScope"
+  },
+  {
+   "kind": "type",
+   "name": "Constructor"
+  },
+  {
+   "kind": "const",
+   "name": "describe"
+  },
+  {
+   "kind": "type",
+   "name": "ElementOfAct"
+  },
+  {
+   "kind": "type",
+   "name": "ElementQuery"
+  },
+  {
+   "kind": "type",
+   "name": "Engine"
+  },
+  {
+   "kind": "type",
+   "name": "EngineCall"
+  },
+  {
+   "kind": "type",
+   "name": "EngineClassic"
+  },
+  {
+   "kind": "type",
+   "name": "EngineInput"
+  },
+  {
+   "kind": "type",
+   "name": "EngineMount"
+  },
+  {
+   "kind": "type",
+   "name": "EngineNoun"
+  },
+  {
+   "kind": "type",
+   "name": "EngineNounEvent"
+  },
+  {
+   "kind": "type",
+   "name": "EnginePress"
+  },
+  {
+   "kind": "type",
+   "name": "EngineSelect"
+  },
+  {
+   "kind": "type",
+   "name": "EngineToolCall"
+  },
+  {
+   "kind": "type",
+   "name": "Expect"
+  },
+  {
+   "kind": "const",
+   "name": "expect"
+  },
+  {
+   "kind": "type",
+   "name": "Expectation"
+  },
+  {
+   "kind": "type",
+   "name": "Expecting"
+  },
+  {
+   "kind": "type",
+   "name": "FoundElement"
+  },
+  {
+   "kind": "type",
+   "name": "InputTarget"
+  },
+  {
+   "kind": "type",
+   "name": "Matchers"
+  },
+  {
+   "kind": "type",
+   "name": "Matching"
+  },
+  {
+   "kind": "type",
+   "name": "Mock"
+  },
+  {
+   "kind": "const",
+   "name": "mock"
+  },
+  {
+   "kind": "type",
+   "name": "MockClock"
+  },
+  {
+   "kind": "type",
+   "name": "MockClockOptions"
+  },
+  {
+   "kind": "type",
+   "name": "MockSession"
+  },
+  {
+   "kind": "type",
+   "name": "Mounted"
+  },
+  {
+   "kind": "type",
+   "name": "MountedMembers"
+  },
+  {
+   "kind": "type",
+   "name": "MountInputTarget"
+  },
+  {
+   "kind": "type",
+   "name": "MountKeyEvent"
+  },
+  {
+   "kind": "type",
+   "name": "MountPointerEvent"
+  },
+  {
+   "kind": "type",
+   "name": "MountPressTarget"
+  },
+  {
+   "kind": "type",
+   "name": "MountResizeTarget"
+  },
+  {
+   "kind": "type",
+   "name": "MountSelectTarget"
+  },
+  {
+   "kind": "type",
+   "name": "MountTarget"
+  },
+  {
+   "kind": "type",
+   "name": "Negatable"
+  },
+  {
+   "kind": "type",
+   "name": "Plugin"
+  },
+  {
+   "kind": "type",
+   "name": "PluginTier"
+  },
+  {
+   "kind": "type",
+   "name": "PressTarget"
+  },
+  {
+   "kind": "type",
+   "name": "SelectTarget"
+  },
+  {
+   "kind": "const",
+   "name": "test"
+  },
+  {
+   "kind": "type",
+   "name": "TestBody"
+  },
+  {
+   "kind": "type",
+   "name": "TestOptions"
+  },
+  {
+   "kind": "type",
+   "name": "TestRest"
+  },
+  {
+   "kind": "type",
+   "name": "ThrowExpectation"
+  },
+  {
+   "kind": "const",
+   "name": "tier"
+  },
+  {
+   "kind": "type",
+   "name": "WithMessage"
+  }
+ ]
+}

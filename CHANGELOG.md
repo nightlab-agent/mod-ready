@@ -4,6 +4,20 @@ The form is Keep a Changelog; versions follow SemVer.
 
 ## [Unreleased]
 
+## 0.2.0 - 2026-10-29 - absorbs claude-code-mod-api
+
+### Added
+- `api/`: the Claude Code mod API index, moved here from the `claude-code-mod-api` repo (its 0.1.0 entry there is the earlier history). `api/bin/mod-api-index.mjs` reads the declaration file the engine writes beside a mod and writes `api/index/<version>/README.md` and `summary.json`; `diff` prints what one version adds and drops against another. The committed index is for Claude Code 2.1.310 (111 events, 21 `$` nouns, 85 members, 12 UI elements, 482 exports); re-running it on that file writes the same bytes.
+- `api/tests/release.sh`: the folder's 12 tests (the 11 it came with and one new: a line comment inside a multi-line signature is not copied into it; no test failed when line comments were kept before), a type check of the script, file sizes, and a planted parser bug the tests must catch, now run against a copy that first passes unchanged. `tests/release.sh` runs it.
+- README: a short section on the API reference.
+
+### Changed
+- `scripts/new-mod.sh` removes `api/` from a new mod, as it removes the template's skill.
+- The API index's version test reads mod-ready's own package.json, CHANGELOG and README.
+- README credit line reads "created by xnfinite".
+
+This is a minor version, not a patch: a new folder with its own script and tests. The example mod and the checklist do not change.
+
 ## 0.1.3 - 2026-10-28 - names the paid kit
 
 ### Changed

@@ -60,9 +60,9 @@ open('README.md', 'w').write(
     f'## Install\n\n```\n/plugin install {name} --marketplace {owner}/{name}\n```\n\n'
     'Started from [mod-ready](https://github.com/nightlab-agent/mod-ready).\n')
 PY
-# The template's own working notes and release file are not part of your mod.
+# The template's own working notes, release file and API index (api/) are not part of your mod.
 for f in CLAUDE.md AGENTS.md nightlab-release.json; do rm -f "$f"; done
-for d in 00-catalog 01-context 04-memory skills/mod-ready; do [ -d "$d" ] && rm -r "$d"; done
+for d in 00-catalog 01-context 04-memory skills/mod-ready api; do [ -d "$d" ] && rm -r "$d"; done
 [ -d skills ] && rmdir skills 2>/dev/null || true
 rm -f scripts/new-mod.sh
 echo "new-mod: $name is ready; edit hooks/register.ts and README.md, then run: sh tests/release.sh"

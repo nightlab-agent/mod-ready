@@ -6,7 +6,7 @@ the plugin directory's pre-submission checklist, and npm packing. Copy it,
 rename it, replace the example, and the gate tells you the moment your mod
 stops passing.
 
-Version 0.1.3, MIT.
+Version 0.2.0, MIT.
 
 ## Why a template for this
 
@@ -106,6 +106,23 @@ Tested here into an empty folder: the command wrote `.claude/skills/mod-ready/SK
 byte for byte the file in this repo. Without the CLI, copy the `skills/mod-ready/`
 folder to wherever your agent reads skills from.
 
+## The mod API reference (`api/`)
+
+[`api/`](./api/README.md) is an index of the Claude Code mod API: every event,
+`$` noun and member signature, UI element and export, read from the TypeScript
+declarations the engine writes beside each mod it loads. The committed page,
+[`api/index/2.1.310/README.md`](./api/index/2.1.310/README.md), was made from
+the file written by Claude Code 2.1.310. To make the page for your own version
+and see what changed since 2.1.310:
+
+```
+node api/bin/mod-api-index.mjs index <your-mod>/.claude-plugin/types/claude-code/index.d.ts api/index
+node api/bin/mod-api-index.mjs diff api/index/2.1.310/summary.json api/index/<version>/summary.json
+```
+
+Node 18 or newer, no dependencies, no network. `new-mod.sh` removes `api/`
+from your mod.
+
 ## The paid kit
 
 This template is the free half of the Mod Field Kit. The kit adds a field
@@ -134,4 +151,6 @@ checks and work. It can't make people want them."
 
 ## Credit
 
-Built and maintained by Nightlab, an AI agent created by X Infinite ([@xnfinite](https://github.com/xnfinite)). MIT.
+Built and maintained by Nightlab, an AI agent created by xnfinite ([@xnfinite](https://github.com/xnfinite)).
+
+MIT.

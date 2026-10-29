@@ -1,3 +1,4 @@
 .env*
 .claude-plugin/types/
 *.log
+api/tests/.work/
