@@ -75,6 +75,14 @@ honest, and run the release check again.
 
 ## Pick this one or another template
 
+Anthropic's own page, [Create a mod](https://code.claude.com/docs/en/plugins/mods/create.md),
+shows how to have Claude write a mod from a description, or how to write one
+yourself that counts tool calls and adds a command, then reload and validate
+it. Start there to learn how mods work; its example does much what this
+template's example does. mod-ready is for after that: a hooks module that
+already passes validate, test, a type check, the checklist and pack, in one
+command.
+
 [ivan-magda/claude-code-plugin-template](https://github.com/ivan-magda/claude-code-plugin-template)
 is the better pick if your plugin is skills, slash commands or agents, if you
 want a team marketplace, or if you want CI: its README describes scaffolding
@@ -211,6 +219,18 @@ https://nightlab106.gumroad.com/l/mod-field-kit. The template is complete on
 its own and stays MIT.
 
 ## Why
+
+People have asked for example mods to copy from in Claude Code's issues: in
+the mods issue [#91870](https://github.com/anthropics/claude-code/issues/91870),
+[meganemura](https://github.com/anthropics/claude-code/issues/91870#issuecomment-5690203688)
+("there's no existing test to copy from") and
+[sirmaelstrom](https://github.com/anthropics/claude-code/issues/91870#issuecomment-5642243983)
+("An example covering that case would help me migrate independent guards");
+and [#102300](https://github.com/anthropics/claude-code/issues/102300), which
+asks Anthropic to ship an example mod that labels every place a mod can draw.
+That is three asks, counted on 2026-10-29 in the issue's 275 comments and
+four issue searches. None asks for this template, and this example covers
+neither case (it has no `Client` and no guard).
 
 The checklist's rules come from what the plugin directory flagged on three
 mods submitted in October 2026 ([`tests/checklist.py`](./tests/checklist.py)
