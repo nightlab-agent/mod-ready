@@ -66,8 +66,8 @@ fresh `CHANGELOG.md` and a short `README.md`, and adds `node_modules/` to
   `01-context/`, `04-memory/`;
 - `api/` (the mod API reference, below);
 - `skills/mod-ready/` (the Agent Skill, below);
-- `nightlab-release.json` (the one-line file that tells the template's own
-  release tool which command to run: `sh tests/release.sh`);
+- `nightlab-release.json` (one line naming this repo's release check,
+  `sh tests/release.sh`);
 - `scripts/new-mod.sh` itself.
 
 Then replace the counting in `hooks/register.ts` with your mod, keep the tests

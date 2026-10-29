@@ -11,7 +11,7 @@ The form is Keep a Changelog; versions follow SemVer.
 - `api/tests/release.sh`: the folder's 12 tests (the 11 it came with and one new: a line comment inside a multi-line signature is not copied into it; no test failed when line comments were kept before), a type check of the script, file sizes, and a planted parser bug the tests must catch, now run against a copy that first passes unchanged. `tests/release.sh` runs it.
 - README: a short section on the API reference.
 - The example mod writes a `.gitignore` holding `*` into its folder on its first write (unless one is there), so the session counts stay out of git. Tests: written once; an existing one left alone.
-- Collision tests for the example mod: out of order (a slow write from an earlier call must not land after a newer count), two at once (a subagent's call and step during a main step leave only the main step counted), look-alikes (`Read`, `mcp__docs__Read` and `ReadMcpResourceTool` count as three calls).
+- Collision tests for the example mod: out of order (a slow write from an earlier call must not land after a newer count), two at once (a subagent's call and step during a main step leave only the main step counted), look-alikes (a tool call and a model step each raise only their own count, by one; `Read` and `mcp__docs__Read` both count as tool calls).
 - `mod-api-index index` refuses a file that is not a Claude Code declaration file (no `// Written by Claude Code <version>.` first line, or no `declare module 'claude-code'`): exit 2 with a message, nothing written. Before, it wrote an index named `unknown`. A test covers three such files.
 - README: a "Remove it" section, the release check's prerequisites with install commands, and all seven steps it runs.
 

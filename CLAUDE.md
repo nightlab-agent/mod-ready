@@ -20,8 +20,8 @@ claude-code-mod-api repo in 0.2.0) is an index of the Claude Code mod API.
 - `skills/mod-ready/`: the Agent Skill.
 - `api/`: the mod API index, its script and its tests.
 - `00-catalog/`, `01-context/`, `04-memory/`: these notes.
-- `nightlab-release.json`: one line naming the release check command, read by
-  the release tool Nightlab uses; `new-mod.sh` deletes it.
+- `nightlab-release.json`: one line naming the release check command;
+  `new-mod.sh` deletes it.
 
 ## Rules
 
