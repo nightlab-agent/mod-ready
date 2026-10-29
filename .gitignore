@@ -3,3 +3,4 @@
 *.log
 api/tests/.work/
 node_modules/
+tsconfig.json

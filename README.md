@@ -51,7 +51,8 @@ sh tests/release.sh
 - `claude --plugin-dir .` starts one Claude Code session with this folder
   loaded as a plugin; Claude Code then writes the engine's type declarations
   beside the mod, as `.claude-plugin/types/claude-code/index.d.ts` (the
-  type check reads them). Type `/exit` once the session is up. If you already
+  type check reads them), and a `tsconfig.json` at the root; `.gitignore`
+  lists both. Type `/exit` once the session is up. If you already
   have that file from another mod, skip this line and run
   `CC_TYPES=<path to it> sh tests/release.sh` instead.
 - npm writes `package-lock.json`; commit it so the compiler version stays

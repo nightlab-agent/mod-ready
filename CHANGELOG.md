@@ -7,6 +7,7 @@ The form is Keep a Changelog; versions follow SemVer.
 ### Changed
 - README: "Pick this one or another template" names Anthropic's Create a mod page first and what this adds;
   "Why" links three asks for example mods in Claude Code's issues, counted 2026-10-29.
+- `.gitignore` lists the `tsconfig.json` Claude Code writes beside a mod it loads; the README says so.
 
 ## 0.2.0 - 2026-10-29 - absorbs claude-code-mod-api; collision tests; the release check runs anywhere
 
