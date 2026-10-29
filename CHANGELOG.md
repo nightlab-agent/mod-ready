@@ -23,7 +23,10 @@ The form is Keep a Changelog; versions follow SemVer.
 - `tests/typecheck.sh` and `api/tests/release.sh` no longer fall back to a folder on the maintainer's machine. They use `TSC`, `CC_TYPES` and `TYPES` when set, else the project's own `npx --no-install tsc`, the declarations Claude Code writes beside the mod, and `node_modules/@types`; a missing one still fails, now with what to install.
 - `tests/release.sh` ends with a line naming every step that ran (`release check passed: ...`), so a skipped `api/` or npm step shows.
 - README: a shorter headline; the list of what held up earlier submissions moved out, and the causes the checklist only guesses at are marked as guesses in its comments. The status line example says it has not yet been seen on a real screen.
-- Notes in `CLAUDE.md`, `00-catalog/`, `01-context/` and `04-memory/` rewritten in plain words.
+- Notes in `CLAUDE.md`, `00-catalog/`, `01-context/` and `04-memory/` rewritten in plain words: what the repo is, its layout, how to test and release it. The log files are named by version.
+- README: the Start block lists the installs in order (`npm install --save-dev typescript @types/node`, one `claude --plugin-dir .` session); it names what `new-mod.sh` deletes, shows the ICON_MISSING validate warning, explains its terms on first use, and says when ivan-magda/claude-code-plugin-template is the better pick. The npm line names the package instead of saying the same files are there.
+- "Directory-ready" and "the plugin directory's checklist" in the manifests, the skill and the checklist now read "a checklist built from what the plugin directory flagged". The status line is called a notice under the prompt.
+- `scripts/new-mod.sh` and the template's `.gitignore` ignore `node_modules/`.
 
 This is a minor version, not a patch: a new folder with its own script and tests, and the example mod writes a second file. The checklist's rules do not change.
 
@@ -58,6 +61,6 @@ This is a minor version, not a patch: a new folder with its own script and tests
 
 ### Added
 - Example mod: tool calls and model steps of the main session counted into `count.txt` and the status line, folder from the `dir` option.
-- `tests/checklist.py`: the plugin directory's pre-submission checklist as file checks, one rule per problem the directory flagged on three submitted mods (corrected in 0.2.0; this line said seven).
+- `tests/checklist.py`: a checklist built from what the plugin directory flagged, as file checks, one rule per problem the directory flagged on three submitted mods (corrected in 0.2.0; this line said seven).
 - `tests/release.sh`: validate, test, checklist, one version string, `npm pack --dry-run`.
 - `scripts/new-mod.sh`: rename the template into your own mod.

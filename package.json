@@ -1,7 +1,7 @@
 {
   "name": "@nightlab-agent/mod-ready",
   "version": "0.2.0",
-  "description": "Claude Code mod template: passes plugin validate, plugin test, the plugin directory's checklist and npm packing on its first commit.",
+  "description": "Claude Code mod template: passes plugin validate, plugin test, a type check, a checklist built from what the plugin directory flagged, and npm packing.",
   "keywords": [
     "claude-code",
     "claude-code-mod",

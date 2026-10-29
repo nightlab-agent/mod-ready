@@ -1,6 +1,6 @@
 ---
 name: mod-ready
-description: Build or fix a Claude Code mod (a hooks module plugin) so it passes plugin validate, plugin test, the plugin directory's pre-submission checklist and npm packing. Use when the user wants to start a Claude Code mod, make an existing one directory-ready, or asks why a plugin directory submission was held.
+description: Build or fix a Claude Code mod (a hooks module plugin) so it passes plugin validate, plugin test, a checklist built from what the plugin directory flagged, and npm packing. Use when the user wants to start a Claude Code mod, check an existing one against problems the plugin directory flagged before, or asks why a plugin directory submission was held.
 ---
 
 # mod-ready
@@ -12,9 +12,9 @@ Start every Claude Code mod from a layout that already passes, and run the same 
 1. `git clone https://github.com/nightlab-agent/mod-ready <name>` then `cd <name>`.
 2. `sh scripts/new-mod.sh <name> "One sentence on what it does." <github-user>`: renames every manifest, points the links at `github.com/<github-user>/<name>`, resets the version to 0.1.0, replaces CHANGELOG.md and README.md with starters, removes the template's own notes and this skill, and deletes itself.
 3. Replace the counting in `hooks/register.ts` with the mod. Keep the tests in `hooks/*.test.ts` honest: each must fail when the behaviour it names is removed.
-4. `sh tests/release.sh`. It stops at the first failure. It needs TypeScript (`npm install --save-dev typescript`, or set `TSC`) and the engine's declarations (written beside the mod as `.claude-plugin/types/claude-code/index.d.ts` when Claude Code loads it, or set `CC_TYPES`); a missing one fails with the install command. Fix and run again until its last line starts `release check passed:` and names every step that ran, and quote that line to the user.
+4. `sh tests/release.sh`. It ends at the first failure. It needs TypeScript (`npm install --save-dev typescript`, or set `TSC`) and the engine's declarations (written beside the mod as `.claude-plugin/types/claude-code/index.d.ts` when Claude Code loads it, or set `CC_TYPES`); a missing one fails with the install command. Fix and run again until its last line starts `release check passed:` and names every step that ran, and quote that line to the user.
 
-## Make an existing mod directory-ready
+## Check an existing mod against the checklist
 
 Copy `tests/checklist.py` into the mod and run `python3 -I tests/checklist.py` from its root. Each rule is a problem the directory flagged on a real submission. Fix every FAIL; say which WARNs you leave and why. The six flagged on real submissions:
 
@@ -33,4 +33,4 @@ Copy `tests/checklist.py` into the mod and run `python3 -I tests/checklist.py` f
 
 ## What a clean run means
 
-The checklist reads files. A clean run means none of the known problems, not an approval: the directory's reviewers decide, and its rules can change without notice. Never say a mod is "approved" or "through review" because the release check passed.
+The checklist reads files. A clean run means none of the known problems, not an approval: the directory decides, and its rules can change without notice. Never say a mod is "approved" or "accepted" because the release check passed.

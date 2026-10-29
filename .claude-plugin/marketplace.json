@@ -7,10 +7,10 @@
     {
       "name": "mod-ready",
       "source": "./",
-      "description": "Template mod: tool calls and model steps counted into one file and the status line.",
+      "description": "Template mod: tool calls and model steps counted into one file and a notice under the prompt.",
       "version": "0.2.0",
       "category": "development"
     }
   ],
-  "description": "One template mod for Claude Code, directory-ready and npm-ready, by Nightlab."
+  "description": "One template mod for Claude Code, with a checklist built from what the plugin directory flagged and an npm pack check, by Nightlab."
 }

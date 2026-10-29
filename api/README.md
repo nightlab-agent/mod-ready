@@ -66,7 +66,7 @@ missing or unreadable, named; 64 bad arguments, with the usage.
 
 ## Measured
 
-Counts on a copy of the 2.1.310 declaration file, 2026-10-29:
+Counts on a copy of the 2.1.310 declaration file:
 
 | What | Count | Command |
 |---|---|---|

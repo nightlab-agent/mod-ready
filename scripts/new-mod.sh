@@ -1,23 +1,25 @@
 #!/bin/sh
 # Turn this template into your own mod.
-# Usage: sh scripts/new-mod.sh <mod-name> "<one-sentence description>" <github-owner>
-# Renames the mod in every manifest, points the links at github.com/<owner>/<mod-name>,
-# resets the version to 0.1.0, starts a fresh CHANGELOG and README, and removes the
-# template's own working notes. Run it once, from a fresh clone, then: sh tests/release.sh
+# Usage: sh scripts/new-mod.sh <mod-name> "<one-sentence description>" <github-user>
+# Renames the mod in every manifest, points the links at github.com/<github-user>/<mod-name>,
+# resets the version to 0.1.0, starts a fresh CHANGELOG and README, adds node_modules/ to
+# .gitignore, and deletes what belongs to the template only: its maintainer notes (CLAUDE.md,
+# AGENTS.md, 00-catalog/, 01-context/, 04-memory/), api/, skills/mod-ready/,
+# nightlab-release.json and this script. Run it once, from a fresh clone, then: sh tests/release.sh
 set -e
 cd "$(dirname "$0")/.."
-name="$1"; desc="$2"; owner="$3"
-if [ -z "$name" ] || [ -z "$desc" ] || [ -z "$owner" ]; then
-  echo 'usage: sh scripts/new-mod.sh <mod-name> "<one-sentence description>" <github-owner>' >&2
+name="$1"; desc="$2"; ghuser="$3"
+if [ -z "$name" ] || [ -z "$desc" ] || [ -z "$ghuser" ]; then
+  echo 'usage: sh scripts/new-mod.sh <mod-name> "<one-sentence description>" <github-user>' >&2
   exit 64
 fi
 case "$name" in
   *[!a-z0-9-]*|-*) echo "new-mod: the name must be lowercase letters, digits and dashes: $name" >&2; exit 64 ;;
 esac
-NAME="$name" DESC="$desc" OWNER="$owner" python3 -I - <<'PY'
+NAME="$name" DESC="$desc" GHUSER="$ghuser" python3 -I - <<'PY'
 import json, os
-name, desc, owner = os.environ['NAME'], os.environ['DESC'], os.environ['OWNER']
-url = f'https://github.com/{owner}/{name}'
+name, desc, ghuser = os.environ['NAME'], os.environ['DESC'], os.environ['GHUSER']
+url = f'https://github.com/{ghuser}/{name}'
 
 def edit(path, change):
     data = json.load(open(path))
@@ -26,19 +28,19 @@ def edit(path, change):
 
 def plugin(d):
     d.update(name=name, version='0.1.0', description=desc, homepage=url + '#readme', repository=url)
-    d['author'] = {'name': owner}
+    d['author'] = {'name': ghuser}
     d['keywords'] = ['claude-code-mod']
     d['userConfig']['dir']['default'] = f'.{name}'
 
 def market(d):
-    d['name'] = f'{owner}-{name}'.lower()
-    d['owner'] = {'name': owner}
+    d['name'] = f'{ghuser}-{name}'.lower()
+    d['owner'] = {'name': ghuser}
     d['description'] = desc
     d['plugins'][0].update(name=name, description=desc, version='0.1.0')
 
 def package(d):
     d.update(name=name, version='0.1.0', description=desc, homepage=url + '#readme',
-             bugs=url + '/issues', author=owner)
+             bugs=url + '/issues', author=ghuser)
     d['repository'] = {'type': 'git', 'url': url}
     d['keywords'] = ['claude-code', 'claude-code-mod', 'claude-code-plugin']
     d['files'] = [f for f in d.get('files', []) if f not in ('skills/', 'scripts/new-mod.sh')]  # neither the template's skill nor this script is part of your mod
@@ -57,10 +59,13 @@ start = readme.index('## What the example mod does')
 end = readme.index('## Install the example as it is')
 open('README.md', 'w').write(
     f'# {name}\n\n{desc}\n\nVersion 0.1.0, MIT.\n\n' + readme[start:end].replace('`.mod-ready`', f'`.{name}`') +
-    f'## Install\n\n```\n/plugin install {name} --marketplace {owner}/{name}\n```\n\n'
+    f'## Install\n\n```\n/plugin install {name} --marketplace {ghuser}/{name}\n```\n\n'
     'Started from [mod-ready](https://github.com/nightlab-agent/mod-ready).\n')
+lines = open('.gitignore').read().splitlines() if os.path.exists('.gitignore') else []
+if 'node_modules/' not in lines:
+    open('.gitignore', 'w').write('\n'.join(lines + ['node_modules/']) + '\n')
 PY
-# The template's own working notes, release file and API index (api/) are not part of your mod.
+# The template's maintainer notes, its release-tool file and the API index (api/) are not part of your mod.
 for f in CLAUDE.md AGENTS.md nightlab-release.json; do rm -f "$f"; done
 for d in 00-catalog 01-context 04-memory skills/mod-ready api; do [ -d "$d" ] && rm -r "$d"; done
 [ -d skills ] && rmdir skills 2>/dev/null || true

@@ -1,7 +1,7 @@
 import type { Register } from 'claude-code'
 
 // mod-ready's example mod: counts the session's tool calls and model steps,
-// shows them in the status line and rewrites one small file under the `dir`
+// shows them in a notice under the prompt ($.ui.status) and rewrites one small file under the `dir`
 // option. Replace the counting with your own mod; keep the shape.
 //
 // The shape the plugin directory's checks pass:

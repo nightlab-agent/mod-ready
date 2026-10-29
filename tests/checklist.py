@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The plugin directory's pre-submission checklist, as far as a file read can check it.
+"""A checklist built from what the plugin directory flagged, as far as a file read can check it.
 
 Run from the repo root: python3 -I tests/checklist.py   (exit 1 on any FAIL; WARN does not fail)
 
