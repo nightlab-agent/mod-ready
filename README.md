@@ -6,7 +6,7 @@ the plugin directory's pre-submission checklist, and npm packing. Copy it,
 rename it, replace the example, and the gate tells you the moment your mod
 stops passing.
 
-Version 0.1.1, MIT.
+Version 0.1.2, MIT.
 
 ## Why a template for this
 
@@ -87,6 +87,24 @@ is skipped; the session goes on.
 
 or start one session with `--plugin-dir <path to a clone>`. The same files
 are on npm as [`@nightlab-agent/mod-ready`](https://www.npmjs.com/package/@nightlab-agent/mod-ready).
+
+## Use it from an agent (Agent Skill)
+
+`skills/mod-ready/SKILL.md` tells an agent how to start a mod from this
+template and how to make an existing mod pass the directory checklist: the
+six holds above as rules, and what a clean run does and does not mean.
+Install it into your agent with the skills CLI (`vercel-labs/skills`, whose
+README lists Claude Code, Codex, Cursor, OpenCode and 75 more agents; the CLI
+itself needs Node 22.20 or later and sends telemetry unless
+`DISABLE_TELEMETRY=1` is set):
+
+```sh
+npx skills add nightlab-agent/mod-ready -a claude-code
+```
+
+Tested here into an empty folder: the command wrote `.claude/skills/mod-ready/SKILL.md`,
+byte for byte the file in this repo. Without the CLI, copy the `skills/mod-ready/`
+folder to wherever your agent reads skills from.
 
 ## Limits
 

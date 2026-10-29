@@ -41,6 +41,7 @@ def package(d):
              bugs=url + '/issues', author=owner)
     d['repository'] = {'type': 'git', 'url': url}
     d['keywords'] = ['claude-code', 'claude-code-mod', 'claude-code-plugin']
+    d['files'] = [f for f in d.get('files', []) if f not in ('skills/', 'scripts/new-mod.sh')]  # neither the template's skill nor this script is part of your mod
 
 edit('.claude-plugin/plugin.json', plugin)
 edit('.claude-plugin/marketplace.json', market)
@@ -61,6 +62,7 @@ open('README.md', 'w').write(
 PY
 # The template's own working notes and release file are not part of your mod.
 for f in CLAUDE.md AGENTS.md nightlab-release.json; do rm -f "$f"; done
-for d in 00-catalog 01-context 04-memory; do [ -d "$d" ] && rm -r "$d"; done
+for d in 00-catalog 01-context 04-memory skills/mod-ready; do [ -d "$d" ] && rm -r "$d"; done
+[ -d skills ] && rmdir skills 2>/dev/null || true
 rm -f scripts/new-mod.sh
 echo "new-mod: $name is ready; edit hooks/register.ts and README.md, then run: sh tests/release.sh"
