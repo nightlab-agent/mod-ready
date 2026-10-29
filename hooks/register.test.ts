@@ -139,15 +139,18 @@ test("two at once: a subagent's call and step during a main step leave only the 
   expect(count(next, 'steps')).toBe(count(after, 'steps'))
 })
 
-test('look-alikes: two tool names sharing a prefix or a suffix count as two calls', { options: { dir: '/alike' } }, async ($, on) => {
+test('look-alikes: a tool call and a model step each raise only their own line, by one', { options: { dir: '/alike' } }, async ($, on) => {
   const { writes } = world(on, { exists: true })
   await $.tool.call({ tool: 'Read', file_path: 'a.txt' })
-  const start = count(counted(writes)[0]!.text, 'tool calls')
+  const a = counted(writes).at(-1)!.text
+  await step($, 0)
+  const b = counted(writes).at(-1)!.text
   await $.tool.call({ tool: 'mcp__docs__Read', arguments: {} } as never)
-  await $.tool.call({ tool: 'ReadMcpResourceTool', server: 's', uri: 'u' } as never)
-  const c = counted(writes)
-  expect(c.length).toBe(3)
-  expect(count(c[2]!.text, 'tool calls')).toBe(start + 2)
+  const c = counted(writes).at(-1)!.text
+  expect(count(b, 'tool calls')).toBe(count(a, 'tool calls'))
+  expect(count(b, 'steps')).toBe(count(a, 'steps') + 1)
+  expect(count(c, 'tool calls')).toBe(count(b, 'tool calls') + 1)
+  expect(count(c, 'steps')).toBe(count(b, 'steps'))
 })
 
 test('a failed write does not stop the call', async ($, on) => {
