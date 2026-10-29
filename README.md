@@ -3,7 +3,7 @@
 **A Claude Code mod template whose first commit already passes every check
 between you and a listing:** `claude plugin validate`, `claude plugin test`,
 the plugin directory's pre-submission checklist, and npm packing. Copy it,
-rename it, replace the example, and the gate tells you the moment your mod
+rename it, replace the example, and the release check tells you the moment your mod
 stops passing.
 
 Version 0.2.0, MIT.
@@ -41,9 +41,9 @@ sh tests/release.sh
 `github.com/<your-github-name>/my-mod`, resets the version to 0.1.0, and
 removes the template's own working notes (`CLAUDE.md`, `00-catalog/`,
 `01-context/`, `04-memory/`). Then replace the counting in
-`hooks/register.ts` with your mod, keep the tests honest, and run the gate.
+`hooks/register.ts` with your mod, keep the tests honest, and run the release check.
 
-## The gate
+## The release check
 
 `sh tests/release.sh` stops at the first failure:
 
@@ -129,7 +129,7 @@ This template is the free half of the Mod Field Kit. The kit adds a field
 guide and three working recipes (a slash command that opens a side pane, a
 line under the collapsed tool group when a call in it failed, and steps and
 output tokens split between the main loop and each subagent type), each with
-the same gate as this template plus a `tsc --noEmit` type check, and a script
+the same release check as this template plus a `tsc --noEmit` type check, and a script
 that copies a recipe out as your own mod. It is $19 on Gumroad, or more if you
 want:
 

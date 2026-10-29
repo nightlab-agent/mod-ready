@@ -23,7 +23,7 @@ This is a minor version, not a patch: a new folder with its own script and tests
 ### Changed
 - README: a section on the Mod Field Kit, the paid half this template is the free half of: what it adds, the price, the link and the listing's honest line. No code change.
 
-## 0.1.2 - 2026-10-28 - the gate fails closed; an Agent Skill
+## 0.1.2 - 2026-10-28 - the release check fails closed; an Agent Skill
 
 ### Added
 - `skills/mod-ready/SKILL.md`: an Agent Skill that walks an agent through starting a mod from this template, or making an existing mod pass the directory checklist. Installable with the skills CLI (`npx skills add nightlab-agent/mod-ready -a claude-code`) or by copying the folder; packed into the npm tarball.
@@ -31,15 +31,15 @@ This is a minor version, not a patch: a new folder with its own script and tests
 ### Changed
 - package.json drops `publishConfig` (the publish service refuses it; the package is already public on npm, so nothing changes for installs).
 - The checklist fails (was: warns) on a `publishConfig` in package.json, and fails on a package.json repository that is not the plugin's own GitHub repo.
-- `scripts/new-mod.sh` drops `scripts/new-mod.sh` (which it deletes) and `skills/` (the template's own skill, which it removes) from the new mod's package.json `files`; before, the generated mod failed the checklist's "every package.json files entry exists" rule on its first gate run.
+- `scripts/new-mod.sh` drops `scripts/new-mod.sh` (which it deletes) and `skills/` (the template's own skill, which it removes) from the new mod's package.json `files`; before, the generated mod failed the checklist's "every package.json files entry exists" rule on its first release-check run.
 - `tests/typecheck.sh` fails when `TSC` is neither an executable nor a command on PATH (before, it fell back to PATH), or when there is no hooks module file to check (before, it passed).
 
-## 0.1.1 - 2026-10-28 - the gate type-checks
+## 0.1.1 - 2026-10-28 - the release check type-checks
 
 ### Changed
-- The release gate type-checks the hooks module, its tests and the state contract with `tsc --noEmit` against the
+- The release check type-checks the hooks module, its tests and the state contract with `tsc --noEmit` against the
   engine's own declarations (`tests/typecheck.sh`, the compiler options the declarations' header gives a hooks module).
-  No `tsc` or no declarations fails the gate; it never skips.
+  No `tsc` or no declarations fails the release check; it never skips.
 
 ### Fixed
 - The npm package carries `tests/typecheck.sh` beside `tests/checklist.py`.

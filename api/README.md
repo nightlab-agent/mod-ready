@@ -15,9 +15,8 @@ This folder was the separate repo `claude-code-mod-api` until mod-ready 0.2.0.
 - [`index/2.1.310/README.md`](./index/2.1.310/README.md): Claude Code 2.1.310. 111 events, 21 `$` nouns with 85 members, 12 UI elements, 482 exports.
 
 Each version is a folder, `index/<version>/`, with the page and a
-`summary.json` the diff reads. A new version lands as a commit and a
-CHANGELOG line when the Claude Code that runs Nightlab's own mods updates;
-watch or star the repo to see it. If your Claude Code is newer than the newest
+`summary.json` the diff reads. A new Claude Code version gets a new folder, a commit and a
+CHANGELOG line; there is no fixed schedule, so check the folder list. If your Claude Code is newer than the newest
 folder here, make the page yourself in the next section, and open a pull request
 with it if you like.
 
@@ -67,7 +66,7 @@ missing or unreadable, named; 64 bad arguments, with the usage.
 
 ## Measured
 
-Counts on Nightlab's own copy of the 2.1.310 declaration file, 2026-10-29:
+Counts on a copy of the 2.1.310 declaration file, 2026-10-29:
 
 | What | Count | Command |
 |---|---|---|
