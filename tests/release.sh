@@ -1,15 +1,22 @@
 #!/bin/sh
-# Release gate: the manifest validates, the tests pass, the directory checklist
-# has no FAIL, every version string agrees, and npm would pack only the listed
-# files. Exit non-zero at the first failure. Run from anywhere: sh tests/release.sh
-# Type-check: tests/typecheck.sh, tsc --noEmit against the engine's declarations.
-# The api/ folder (the mod API index): api/tests/release.sh runs its tests; new-mod.sh removes api/.
+# The release check. Stops at the first failure (exit non-zero). Run from anywhere: sh tests/release.sh
+# Steps, in order:
+#   1. claude plugin validate .        the manifest schema
+#   2. claude plugin test .            the tests in hooks/*.test.ts
+#   3. sh tests/typecheck.sh           tsc --noEmit against the engine's declarations (needs TypeScript
+#                                      and the declarations; see that file)
+#   4. sh api/tests/release.sh         only when api/ exists (new-mod.sh removes it)
+#   5. python3 -I tests/checklist.py   the plugin directory checklist
+#   6. version check                   one version string in five files
+#   7. npm pack --dry-run              only when npm is installed; prints what the tarball would hold
+# The last line names every step that ran.
 set -e
 cd "$(dirname "$0")/.."
 claude plugin validate .
 claude plugin test .
 sh tests/typecheck.sh
-if [ -d api ]; then sh api/tests/release.sh; fi
+ran="validate, test, type check"
+if [ -d api ]; then sh api/tests/release.sh; ran="$ran, api checks"; fi
 python3 -I tests/checklist.py
 python3 -I - <<'PY'
 import json, re, sys
@@ -23,7 +30,12 @@ if len(set(versions.values())) != 1:
     sys.exit(f"version strings differ: {versions}")
 print(f"version check: all five say {plugin}")
 PY
+ran="$ran, checklist, version check"
 if command -v npm >/dev/null 2>&1; then
-  npm pack --dry-run --ignore-scripts 2>&1 | grep -E 'npm notice [0-9.]+[kM]?B ' | sed 's/^npm notice /pack: /'
+  packed=$(npm pack --dry-run --ignore-scripts 2>&1)
+  printf '%s\n' "$packed" | grep -E 'npm notice [0-9.]+[kM]?B ' | sed 's/^npm notice /pack: /'
+  ran="$ran, pack"
+else
+  echo "pack: skipped, npm is not installed"
 fi
-echo "release gate: validate, test, checklist, version and pack passed"
+echo "release check passed: $ran"

@@ -3,7 +3,8 @@
 // Usage: mod-api-index index <claude-code.d.ts> <outdir>   writes <outdir>/<version>/{README.md,summary.json}
 //        mod-api-index diff <summary-a.json> <summary-b.json> prints what B adds and drops against A (markdown)
 // Reads names and signatures only; the engine's doc comments are never copied. No network, no dependencies.
-// Exit codes: 0 ran; 1 a difference was found (diff only); 2 an input missing or unreadable; 64 bad arguments.
+// Exit codes: 0 ran; 1 a difference was found (diff only); 2 an input missing, unreadable, or (index) not a
+// Claude Code declaration file; 64 bad arguments.
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { join } from 'node:path'
 
@@ -172,7 +173,13 @@ function read(p) {
 function main(argv) {
   const [cmd, a, b] = argv
   if (cmd === 'index' && a && b) {
-    const s = parse(read(a))
+    const text = read(a)
+    const s = parse(text)
+    // A Claude Code declaration file names its version on line 1 and declares the 'claude-code' module.
+    if (s.version === 'unknown' || !/^declare module ['"]claude-code['"]/m.test(text)) {
+      console.error(`mod-api-index: ${a} is not a Claude Code declaration file (expected line 1 "// Written by Claude Code <version>." and a declare module 'claude-code' block); nothing written`)
+      return 2
+    }
     const dir = join(b, s.version)
     mkdirSync(dir, { recursive: true })
     writeFileSync(join(dir, 'summary.json'), JSON.stringify(s, null, 1) + '\n')

@@ -1,7 +1,7 @@
 // Tests for mod-api-index (mod-ready's api/ folder): fixtures in api/tests/fixtures, the committed index, and the CLI's exit codes. No network.
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { readFileSync, readdirSync, mkdtempSync, existsSync } from 'node:fs'
+import { readFileSync, readdirSync, mkdtempSync, existsSync, writeFileSync } from 'node:fs'
 import { spawnSync } from 'node:child_process'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -54,7 +54,7 @@ test('elements come from ElementConstructor members, with their surfaces and the
   assert.deepEqual(A.tools, ['Bash'])
 })
 
-test('a file with no version line indexes as unknown rather than failing', () => {
+test('parse() of a file with no version line reports the version as unknown (the CLI refuses such a file)', () => {
   const s = parse('declare module \'claude-code\' {\n  export type X = {\n      a: string;\n  };\n}\n')
   assert.equal(s.version, 'unknown')
   assert.equal(s.counts.exports, 1)
@@ -101,6 +101,21 @@ test('a missing input exits 2 and names the path; bad arguments exit 64 with the
   assert.equal(cli().status, 64)
   assert.equal(cli('index').status, 64)
   assert.ok(cli('bogus').stderr.includes('usage'))
+})
+
+test('index refuses a file that is not a Claude Code declaration file: exit 2, a clear message, nothing written', () => {
+  const out = mkdtempSync(join(root, 'tests', '.work', 'refuse-'))
+  const noVersion = join(out, 'no-version.d.ts')
+  writeFileSync(noVersion, fx('a.d.ts').split('\n').slice(1).join('\n'))
+  const otherModule = join(out, 'other.d.ts')
+  writeFileSync(otherModule, fx('a.d.ts').replace("declare module 'claude-code'", "declare module 'left-pad'"))
+  for (const f of [noVersion, otherModule, join(here, 'index.test.mjs')]) {
+    const r = cli('index', f, out)
+    assert.equal(r.status, 2, f)
+    assert.ok(r.stderr.includes('is not a Claude Code declaration file'), r.stderr)
+    assert.ok(r.stderr.includes(f))
+  }
+  assert.deepEqual(readdirSync(out).sort(), ['no-version.d.ts', 'other.d.ts'], 'no index folder was written')
 })
 
 test('every committed index agrees with itself: the page\'s count table equals its summary, version in the folder name', () => {

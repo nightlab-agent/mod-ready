@@ -1,32 +1,25 @@
 # mod-ready
 
-**A Claude Code mod template whose first commit already passes every check
-between you and a listing:** `claude plugin validate`, `claude plugin test`,
-the plugin directory's pre-submission checklist, and npm packing. Copy it,
-rename it, replace the example, and the release check tells you the moment your mod
-stops passing.
+**A Claude Code mod template that passes validate, test and pack.**
+
+Copy it, rename it, replace the example with your own mod, and run
+`sh tests/release.sh`. It tells you the moment your mod stops passing the
+plugin manifest check, its tests, a type check, a checklist of what the plugin
+directory flagged on earlier submissions, or npm packing.
 
 Version 0.2.0, MIT.
 
-## Why a template for this
+The end of `sh tests/release.sh` on this repo, 2026-10-29 (eleven of the
+twelve `pack:` lines cut):
 
-The directory runs a safety scan and a policy review that `claude plugin
-validate` does not. Seven mods were shipped from this layout and three of them
-were submitted to the directory; these held them up, and each one is now a
-rule in `tests/checklist.py`:
+```
+checklist: 19 rules, 0 FAIL, 1 WARN
+version check: all five say 0.2.0
+pack: 3.0kB hooks/register.ts
+release check passed: validate, test, type check, api checks, checklist, version check, pack
+```
 
-- an unknown field in `plugin.json` (it was `types`): a validation warning;
-- no `homepage` or `repository` in `plugin.json`: the listing showed 2 of 6 links;
-- a hooks module that read an environment variable (`HOME`): read by the scan as a credential read;
-- a write path built from that variable at run time: not fixed text, a policy hold;
-- a code comment that said the mod *never* reads credentials: the likely trigger of a hold, since the scan reads the word, not the never;
-- a README that did not say what each hook does, what it writes, and that nothing leaves the machine.
-
-And three things the engine taught the example module, written into its comments:
-
-- `$` may only be handed to a function declared at the top of the module; a helper made inside `register` does not load;
-- `options` are filled in when an event runs, not when `register` runs, and only for fields `userConfig` declares;
-- a security plugin that runs first can pass one event on past later mods, so the example listens on two (`tool.call` and `turn.step`).
+(The one WARN is this repo's own `CLAUDE.md`; `new-mod.sh` removes it.)
 
 ## Start a mod from it
 
@@ -40,21 +33,39 @@ sh tests/release.sh
 `new-mod.sh` renames the mod in every manifest, points the links at
 `github.com/<your-github-name>/my-mod`, resets the version to 0.1.0, and
 removes the template's own working notes (`CLAUDE.md`, `00-catalog/`,
-`01-context/`, `04-memory/`). Then replace the counting in
-`hooks/register.ts` with your mod, keep the tests honest, and run the release check.
+`01-context/`, `04-memory/`) and `api/`. Then replace the counting in
+`hooks/register.ts` with your mod, keep the tests honest, and run the release
+check.
 
 ## The release check
 
-`sh tests/release.sh` stops at the first failure:
+You need these first:
 
-1. `claude plugin validate .` (the manifest schema);
-2. `claude plugin test .` (the tests in `hooks/*.test.ts`, run against a stand-in engine; nothing touches your disk);
-3. `python3 -I tests/checklist.py` (the directory checklist above; prints PASS, WARN or FAIL per rule);
-4. one version string in `plugin.json`, `marketplace.json`, `package.json`, the newest `CHANGELOG.md` entry and this README;
-5. `npm pack --dry-run` when npm is installed: the tarball holds only the files `package.json` lists.
+| What | Why | Install |
+|---|---|---|
+| Claude Code (`claude` on PATH) | steps 1 and 2 | see Anthropic's Claude Code docs |
+| TypeScript 5.4 or newer | step 3 (and 4) | `npm install --save-dev typescript`, or set `TSC` to a `tsc` |
+| The engine's type declarations | step 3 | Claude Code writes them each time it loads a mod from your own folder, as `.claude-plugin/types/claude-code/index.d.ts` beside the mod (the file's own header says so). Start one session with `claude --plugin-dir .` from your clone, or set `CC_TYPES` to that file in another mod. |
+| `@types/node` | step 4 only | `npm install --save-dev @types/node`, or set `TYPES` to the `@types` folder that holds `node/` |
+| Python 3 | steps 5 and 6 | your system's package manager |
+| npm (optional) | step 7 | comes with Node.js |
 
-The checklist reads files; it cannot see what the directory's reviewers will
-decide. A clean run means none of the known holds, not an approval.
+A missing compiler or missing declarations fails the check with the install
+command; it never skips.
+
+`sh tests/release.sh` runs seven steps and stops at the first failure:
+
+1. `claude plugin validate .`: the manifest schema.
+2. `claude plugin test .`: the tests in `hooks/*.test.ts`, run against a stand-in engine; nothing touches your disk.
+3. `sh tests/typecheck.sh`: `tsc --noEmit` on the hooks module and its tests against the engine's declarations.
+4. `sh api/tests/release.sh`, only when `api/` exists: the API index's tests, a type check of its script, file sizes, and a planted parser bug the tests must catch.
+5. `python3 -I tests/checklist.py`: the plugin directory checklist; prints PASS, WARN or FAIL per rule.
+6. The version check: one version string in `plugin.json`, `marketplace.json`, `package.json`, the newest `CHANGELOG.md` entry and this README.
+7. `npm pack --dry-run`, only when npm is installed: lists what the tarball would hold.
+
+The last line names every step that ran. The checklist reads files; it cannot
+see what the directory's reviewers will decide. A clean run means none of the
+known problems, not an approval.
 
 ## What the example mod does
 
@@ -68,16 +79,23 @@ call. Nothing leaves the machine: no network request, no data sent anywhere.
 
 ## What it writes
 
-One file, `count.txt`, in the folder the `dir` option names (default
-`.mod-ready`, under the project the session runs in; set it in `/config`):
+Two files, in the folder the `dir` option names (default `.mod-ready`, under
+the project the session runs in; set it in `/config`):
 
-```
-tool calls 12
-steps 5
-```
+- `count.txt`, rewritten after each counted call or step:
 
-and the same counts in the status line: `tools 12 | steps 5`. A failed write
-is skipped; the session goes on.
+  ```
+  tool calls 12
+  steps 5
+  ```
+
+- `.gitignore` holding `*`, on the first write, so git ignores the folder. If
+  the folder already has a `.gitignore`, it is left as it is.
+
+The same counts go to the status line: `tools 12 | steps 5` (not yet seen on a
+real screen; the tests check the text the mod hands to the status line). A
+failed write is skipped; the session goes on. Writes run one after another, so
+a slow write cannot leave an older count in the file.
 
 ## Install the example as it is
 
@@ -88,23 +106,26 @@ is skipped; the session goes on.
 or start one session with `--plugin-dir <path to a clone>`. The same files
 are on npm as [`@nightlab-agent/mod-ready`](https://www.npmjs.com/package/@nightlab-agent/mod-ready).
 
+## Remove it
+
+```
+/plugin uninstall mod-ready
+```
+
+Then delete the `.mod-ready/` folder in each project where it ran (or the
+folder you set in `dir`). It holds only the session counts.
+
 ## Use it from an agent (Agent Skill)
 
 `skills/mod-ready/SKILL.md` tells an agent how to start a mod from this
-template and how to make an existing mod pass the directory checklist: the
-six holds above as rules, and what a clean run does and does not mean.
-Install it into your agent with the skills CLI (`vercel-labs/skills`, whose
-README lists Claude Code, Codex, Cursor, OpenCode and 75 more agents; the CLI
-itself needs Node 22.20 or later and sends telemetry unless
-`DISABLE_TELEMETRY=1` is set):
+template and how to make an existing mod pass the directory checklist. Install
+it with the third-party skills CLI ([vercel-labs/skills](https://github.com/vercel-labs/skills);
+read its README for what it needs and what it sends), or copy the
+`skills/mod-ready/` folder to wherever your agent reads skills from:
 
 ```sh
 npx skills add nightlab-agent/mod-ready -a claude-code
 ```
-
-Tested here into an empty folder: the command wrote `.claude/skills/mod-ready/SKILL.md`,
-byte for byte the file in this repo. Without the CLI, copy the `skills/mod-ready/`
-folder to wherever your agent reads skills from.
 
 ## The mod API reference (`api/`)
 
@@ -120,34 +141,35 @@ node api/bin/mod-api-index.mjs index <your-mod>/.claude-plugin/types/claude-code
 node api/bin/mod-api-index.mjs diff api/index/2.1.310/summary.json api/index/<version>/summary.json
 ```
 
-Node 18 or newer, no dependencies, no network. `new-mod.sh` removes `api/`
-from your mod.
+Node 18 or newer, no dependencies, no network. `index` refuses a file that is
+not a Claude Code declaration file (exit 2).
 
 ## The paid kit
 
-This template is the free half of the Mod Field Kit. The kit adds a field
-guide and three working recipes (a slash command that opens a side pane, a
-line under the collapsed tool group when a call in it failed, and steps and
-output tokens split between the main loop and each subagent type), each with
-the same release check as this template plus a `tsc --noEmit` type check, and a script
-that copies a recipe out as your own mod. It is $19 on Gumroad, or more if you
-want:
+This template is the free half of the Mod Field Kit: a field guide and three
+working recipes (a slash command that opens a side pane, a line under the
+collapsed tool group when a call in it failed, and steps and output tokens
+split between the main loop and each subagent type), $19 on Gumroad:
+https://nightlab106.gumroad.com/l/mod-field-kit. The template is complete on
+its own and stays MIT.
 
-https://nightlab106.gumroad.com/l/mod-field-kit
+## Why
 
-The template is complete on its own and stays MIT. The listing's honest line,
-verbatim: "The repos built by these rules had 0 stars when this was written.
-Three of them have been submitted to Anthropic's plugin directory and are
-waiting for review, not approved. The kit helps you make mods that pass the
-checks and work. It can't make people want them."
+The checklist's rules come from what the plugin directory flagged on three
+mods submitted in October 2026 ([`tests/checklist.py`](./tests/checklist.py)
+names them; its comments say which causes are guesses). The notes in
+`hooks/register.ts` on how the engine behaved were observed while building
+the example, not tested here.
 
 ## Limits
 
-- The checklist's rules come from one maker's seven submissions in October
-  2026; the directory's rules can change without notice. Issues with a hold
-  this template does not catch are welcome.
-- Tested with Claude Code's `plugin test` runner; not yet seen in the
-  directory's own review as a mod of its own.
+- The directory's rules can change without notice. Issues with a problem this
+  template does not catch are welcome.
+- Tested with Claude Code's `plugin test` runner and a stand-in engine; no
+  person has yet watched the example on a real screen, and no mod made from it
+  has been through the directory's review.
+- `/plugin uninstall mod-ready` mirrors the install command; it was not run
+  by this repo's tests.
 
 ## Credit
 
