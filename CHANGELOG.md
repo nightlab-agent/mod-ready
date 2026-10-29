@@ -2,14 +2,12 @@
 
 The form is Keep a Changelog; versions follow SemVer.
 
-## [Unreleased]
+## 0.2.0 - 2026-10-29 - absorbs claude-code-mod-api; collision tests; the release check runs anywhere
 
 ### Changed
 - README: "Pick this one or another template" names Anthropic's Create a mod page first and what this adds;
   "Why" links three asks for example mods in Claude Code's issues, counted 2026-10-29.
 - `.gitignore` lists the `tsconfig.json` Claude Code writes beside a mod it loads; the README says so.
-
-## 0.2.0 - 2026-10-29 - absorbs claude-code-mod-api; collision tests; the release check runs anywhere
 
 ### Added
 - `api/`: the Claude Code mod API index, moved here from the `claude-code-mod-api` repo (its 0.1.0 entry there is the earlier history). `api/bin/mod-api-index.mjs` reads the declaration file the engine writes beside a mod and writes `api/index/<version>/README.md` and `summary.json`; `diff` prints what one version adds and drops against another. The committed index is for Claude Code 2.1.310 (111 events, 21 `$` nouns, 85 members, 12 UI elements, 482 exports); re-running it on that file writes the same bytes.
