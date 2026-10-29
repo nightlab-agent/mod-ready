@@ -4,6 +4,11 @@ The form is Keep a Changelog; versions follow SemVer.
 
 ## [Unreleased]
 
+## 0.1.3 - 2026-10-28 - names the paid kit
+
+### Changed
+- README: a section on the Mod Field Kit, the paid half this template is the free half of: what it adds, the price, the link and the listing's honest line. No code change.
+
 ## 0.1.2 - 2026-10-28 - the gate fails closed; an Agent Skill
 
 ### Added

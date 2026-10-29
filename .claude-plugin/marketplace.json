@@ -8,7 +8,7 @@
       "name": "mod-ready",
       "source": "./",
       "description": "Template mod: tool calls and model steps counted into one file and the status line.",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "category": "development"
     }
   ],

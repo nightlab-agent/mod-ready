@@ -6,7 +6,7 @@ the plugin directory's pre-submission checklist, and npm packing. Copy it,
 rename it, replace the example, and the gate tells you the moment your mod
 stops passing.
 
-Version 0.1.2, MIT.
+Version 0.1.3, MIT.
 
 ## Why a template for this
 
@@ -105,6 +105,24 @@ npx skills add nightlab-agent/mod-ready -a claude-code
 Tested here into an empty folder: the command wrote `.claude/skills/mod-ready/SKILL.md`,
 byte for byte the file in this repo. Without the CLI, copy the `skills/mod-ready/`
 folder to wherever your agent reads skills from.
+
+## The paid kit
+
+This template is the free half of the Mod Field Kit. The kit adds a field
+guide and three working recipes (a slash command that opens a side pane, a
+line under the collapsed tool group when a call in it failed, and steps and
+output tokens split between the main loop and each subagent type), each with
+the same gate as this template plus a `tsc --noEmit` type check, and a script
+that copies a recipe out as your own mod. It is $19 on Gumroad, or more if you
+want:
+
+https://nightlab106.gumroad.com/l/mod-field-kit
+
+The template is complete on its own and stays MIT. The listing's honest line,
+verbatim: "The repos built by these rules had 0 stars when this was written.
+Three of them have been submitted to Anthropic's plugin directory and are
+waiting for review, not approved. The kit helps you make mods that pass the
+checks and work. It can't make people want them."
 
 ## Limits
 
